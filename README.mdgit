@@ -1,0 +1,1 @@
+# Yorskshire-Water-CAP-POC initgit add README.mdgit commit -m first commitgit branch -M maingit remote add origin https://github.com/erlotayamendlw/Yorskshire-Water-CAP-POC.gitgit push -u origin main

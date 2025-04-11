@@ -63,6 +63,10 @@ modules:
       - wateroverview.zip
       name: wateroverview
       target-path: resources/
+    - artifacts:
+      - wateruiv2.zip
+      name: wateruiv2
+      target-path: resources/
 - name: waterui
   type: html5
   path: app/water-ui
@@ -76,6 +80,16 @@ modules:
 - name: wateroverview
   type: html5
   path: app/water-overview
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: wateruiv2
+  type: html5
+  path: app/water-ui-v2
   build-parameters:
     build-result: dist
     builder: custom
@@ -102,9 +116,18 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: GenAI-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
           existing_destinations_policy: update
     service: destination
     service-plan: lite
+  requires:
+  - name: srv-api
 - name: GenAI-repo-host
   type: org.cloudfoundry.managed-service
   parameters:

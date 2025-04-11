@@ -23,7 +23,8 @@
     "undeploy": "cf undeploy GenAI --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-water-overview": "cds watch --open water-overview/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-water-overview": "cds watch --open water-overview/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-water-ui-v2": "cds watch --open water-ui-v2/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "sql": {

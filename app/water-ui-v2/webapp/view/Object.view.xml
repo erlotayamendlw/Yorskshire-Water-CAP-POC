@@ -1,9 +1,126 @@
 <mvc:View
-	controllerName="mycompany.myapp.MyWorklistApp.controller.Object"
+	controllerName="wateruiv2.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.f.semantic"
-	xmlns:form="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout">	
+	xmlns:form="sap.ui.layout.form">	
 
+	<semantic:SemanticPage
+		id="semanticPage"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<Title id = "title1" text="{ProductName}" />
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<FlexBox
+				id = "flexbox1"
+				alignItems="Start"
+				justifyContent="SpaceBetween">
+				<Panel id = "panel1" backgroundDesign="Transparent">
+					<ObjectAttribute
+						id = "objectAttribute1"
+						title="{i18n>ObjectProductIdText}"
+						text="{
+							path: 'ObjectID',
+							formatter: '.formatter.numberUnit'}"/>
+					<ObjectAttribute
+						id = "objectAttribute2"
+						title="{i18n>ObjectPriceTitle}"
+						text="{
+							path: 'UnitPrice',
+							formatter: '.formatter.numberUnit'} EUR"/>
+				</Panel>
+				<Panel id = "panel2" backgroundDesign="Transparent">
+					<ObjectNumber
+						id="objectHeader"
+						unit="PC"
+						textAlign="End"
+						state="{
+							path: 'UnitsInStock',
+							formatter: '.formatter.quantityState'}"
+						number="{
+							path: 'UnitsInStock',
+							formatter: '.formatter.numberUnit'}">
+					</ObjectNumber>
+					<ObjectStatus
+						id = "objectStatus1"
+						text="{i18n>ObjectDiscontinuedStatusText}"
+						state="Error"
+						visible="{path:'Discontinued'}"/>
+					<ProgressIndicator
+						id = "projectIndicator1"
+						width="300px"
+						percentValue="{UnitsInStock}"
+						displayValue="{UnitsInStock}"
+						showValue="true"
+						state="{
+							path: 'UnitsInStock',
+							formatter: '.formatter.quantityState'}" />
+				</Panel>
+
+			</FlexBox>
+		</semantic:headerContent>
+		<semantic:content>
+			<Panel
+				id = "panel3"
+				backgroundDesign="Transparent"
+				headerText="{i18n>ObjectSupplierTabTitle}">
+				<content>
+					<form:SimpleForm
+						id = "form1"
+						maxContainerCols="2"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3"
+						labelSpanM="3"
+						emptySpanL="4"
+						emptySpanM="4"
+						columnsL="1"
+						columnsM="1">
+						<form:content>
+							<Label id = "label1" text="{i18n>ObjectSupplierName}"/>
+							<Text id = "text10" text="{Supplier/CompanyName}"/>
+							<Label id = "label2" text="{i18n>ObjectSupplierAddress}"/>
+							<Text id = "text11" text="{Supplier/Address}"/>
+							<Label id = "label3" text="{i18n>ObjectSupplierZipcode} / {i18n>ObjectSupplierCity}"/>
+							<Text id = "text12" text="{Supplier/PostalCode} / {Supplier/City}"/>
+							<Label id = "label4" text="{i18n>ObjectSupplierCountry}"/>
+							<Text id = "text13" text="{Supplier/Country}"/>
+						</form:content>
+					</form:SimpleForm>
+				</content>
+			</Panel>
+				<Panel
+					id = "panel4"
+					backgroundDesign="Transparent"
+					headerText="{i18n>ObjectCommentsTabTitle}">
+					<content>
+						<FeedInput id = "feedInput1" post=".onPost"/>
+						<List
+							id="idCommentsList"
+							noDataText="{i18n>ObjectCommentNoData}"
+							showSeparators="Inner"
+							items="{
+								path: 'productFeedback>/productComments',
+								sorter: {
+									path: 'date',
+									descending: true
+								}
+							}">
+							<FeedListItem
+								id = "feedListItem1"
+								info="{productFeedback>type}"
+								text="{productFeedback>comment}"
+								timestamp="{productFeedback>date}"/>
+						</List>
+					</content>
+				</Panel>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+	</semantic:SemanticPage>
 </mvc:View>

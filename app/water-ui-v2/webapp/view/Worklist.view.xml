@@ -1,47 +1,80 @@
-<mvc:View controllerName="wateruiv2.controller.Worklist"
+<mvc:View
+    controllerName="wateruiv2.controller.Worklist"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
-	xmlns:vbm="sap.ui.vbm" 
-	xmlns:l="sap.ui.layout"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-	<l:FixFlex class="fixFlexHorizontal" vertical="false">
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <List
+                id="list1"
+                items="{/Products}"
+                mode="SingleSelectMaster"
+                itemPress="onPress"
+            >
+                <StandardListItem
+                    id="StandardListItem1"
+                    title="{ProductName}"
+                    description="{ProductID}"
+                />
+            </List>
+        </content>
 
-		<l:flexContent>
-				<IconTabBar
-					id="iconTabBar"
-					select=".onQuickFilter"
-					expandable="false">
-					<items>
-						<IconTabFilter
-							key="all"
-							showAll="true"
-							count="{worklistView>/countAll}"
-							text="Count"/>
-						<IconTabSeparator/>
-						<IconTabFilter
-							key="inStock"
-							icon="sap-icon://message-success"
-							iconColor="Positive"
-							count="{worklistView>/inStock}"
-							text="{i18n>No Fault}"/>
-						<IconTabFilter
-							key="shortage"
-							icon="sap-icon://message-warning"
-							iconColor="Critical"
-							count="{worklistView>/shortage}"
-							text="{i18n>Unsure}"/>
-						<IconTabFilter
-							key="outOfStock"
-							icon="sap-icon://message-error"
-							iconColor="Negative"
-							count="{worklistView>/outOfStock}"
-							text="{i18n>Fault}"/>
-					</items>
-					<content>
-							<Table id="idProductsTable"
-			inset="false"
-			items="{
+        <l:FixFlex
+            id="fixFlex1"
+            class="fixFlexHorizontal"
+            vertical="false"
+        >
+            <l:flexContent>
+                <IconTabBar
+                    id="iconTabBar"
+                    select=".onQuickFilter"
+                    expandable="false"
+                >
+                    <items>
+                        <IconTabFilter
+                            id="iconTF1"
+                            key="all"
+                            showAll="true"
+                            count="{worklistView>/countAll}"
+                            text="Count"
+                        />
+                        <IconTabSeparator id="iconSep1" />
+                        <IconTabFilter
+                            id="iconTF2"
+                            key="inStock"
+                            icon="sap-icon://message-success"
+                            iconColor="Positive"
+                            count="{worklistView>/inStock}"
+                            text="{i18n>No Fault}"
+                        />
+                        <IconTabFilter
+                            id="iconTF3"
+                            key="shortage"
+                            icon="sap-icon://message-warning"
+                            iconColor="Critical"
+                            count="{worklistView>/shortage}"
+                            text="{i18n>Unsure}"
+                        />
+                        <IconTabFilter
+                            id="iconTF4"
+                            key="outOfStock"
+                            icon="sap-icon://message-error"
+                            iconColor="Negative"
+                            count="{worklistView>/outOfStock}"
+                            text="{i18n>Fault}"
+                        />
+                    </items>
+                    <content>
+                        <Table
+                            id="idProductsTable"
+                            inset="false"
+                            items="{
 				path: '/Notification',
 				sorter: {
 					path: 'Date'
@@ -49,76 +82,112 @@
 				parameters: {
 					'expand': 'NotificationDetail'
 				}
-			}">
-				<headerToolbar>
-							<Toolbar>
-								<Title
-									id="tableHeader"
-									text="{worklistView>/worklistTableTitle}"/>
-								<ToolbarSpacer/>
-								<SearchField
-									id="searchField"
-									tooltip="{i18n>worklistSearchTooltip}"
-									search=".onSearch"
-									width="auto">
-								</SearchField>
-							</Toolbar>
-						</headerToolbar>
-			<columns>
-				<Column
-					width="12em">
-					<Text text="Notification ID" />
-				</Column>
-				<Column
-					minScreenWidth="Tablet"
-					demandPopin="true">
-					<Text text="Description" />
-				</Column>
-				<Column
-					minScreenWidth="Desktop"
-					demandPopin="true"
-					hAlign="End">
-					<Text text="Location" />
-				</Column>
-				<Column
-					minScreenWidth="Desktop"
-					demandPopin="true"
-					hAlign="Center">
-					<Text text="Date" />
-				</Column>
-				<Column
-					hAlign="End">
-					<Text text="URL" />
-				</Column>
-			</columns>
-			<items>
-				<ColumnListItem vAlign="Middle"
-				type="Navigation"
-								press=".onPress">
-					<cells>
-						<ObjectIdentifier
-							text="{ID}"/>
-						<Text
-							text="{Title}" />
-						<Text
-							text="{Location}" />
-						<Text
-							text="{Date}" />
-						<Text
-							text="{VideoURL}" />
-						<!-- <Text
+			}"
+                        >
+                            <headerToolbar>
+                                <Toolbar id="toolbar1">
+                                    <Title
+                                        id="tableHeader"
+                                        text="{worklistView>/worklistTableTitle}"
+                                    />
+                                    <ToolbarSpacer id="toolbarSpacer1" />
+                                    <SearchField
+                                        id="searchField"
+                                        tooltip="{i18n>worklistSearchTooltip}"
+                                        search=".onSearch"
+                                        width="auto"
+                                    />
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column
+                                    id="column1"
+                                    width="12em"
+                                >
+                                    <Text
+                                        id="text1"
+                                        text="Notification ID"
+                                    />
+                                </Column>
+                                <Column
+                                    id="column2"
+                                    minScreenWidth="Tablet"
+                                    demandPopin="true"
+                                >
+                                    <Text
+                                        id="text2"
+                                        text="Description"
+                                    />
+                                </Column>
+                                <Column
+                                    id="column3"
+                                    minScreenWidth="Desktop"
+                                    demandPopin="true"
+                                    hAlign="End"
+                                >
+                                    <Text
+                                        id="text3"
+                                        text="Location"
+                                    />
+                                </Column>
+                                <Column
+                                    id="column4"
+                                    minScreenWidth="Desktop"
+                                    demandPopin="true"
+                                    hAlign="Center"
+                                >
+                                    <Text
+                                        id="text4"
+                                        text="Date"
+                                    />
+                                </Column>
+                                <Column
+                                    id="column5"
+                                    hAlign="End"
+                                >
+                                    <Text
+                                        id="text5"
+                                        text="URL"
+                                    />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem
+                                    id="columnListItem1"
+                                    vAlign="Middle"
+                                    type="Navigation"
+                                    press=".onPress"
+                                >
+                                    <cells>
+                                        <ObjectIdentifier
+                                            id="ObjectIdentifier1"
+                                            text="{ID}"
+                                        />
+                                        <Text
+                                            id="text6"
+                                            text="{Title}"
+                                        />
+                                        <Text
+                                            id="text7"
+                                            text="{Location}"
+                                        />
+                                        <Text
+                                            id="text8"
+                                            text="{Date}"
+                                        />
+                                        <Text
+                                            id="text9"
+                                            text="{VideoURL}"
+                                        />
+                                        <!-- <Text
 							text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
-
-					</cells>
-				</ColumnListItem>
-			</items>
-			</Table>	
-
-					</content>
-				</IconTabBar>
-
-		</l:flexContent>
-	</l:FixFlex>
-
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </IconTabBar>
+            </l:flexContent>
+        </l:FixFlex>
     </Page>
 </mvc:View>

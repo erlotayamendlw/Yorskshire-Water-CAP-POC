@@ -12,12 +12,12 @@ entity Notification
     MalfunctionEndTime : Timestamp;
     AttachmentsURL : String;
     VideoURL : String;
-    genAIResponse : Association to one NotificationDetail;
+    notificationDetail : Association to one NotificationDetail;
 }
 
 entity NotificationDetail
 {
-    key ID : UUID;
+    key ID : String;
     AIDescription : String;
     AITranscript : String;
     VideoId : String;

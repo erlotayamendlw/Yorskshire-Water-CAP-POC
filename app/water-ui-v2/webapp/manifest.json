@@ -43,6 +43,12 @@
     }
   },
   "sap.ui5": {
+    "rootView": {
+      "viewName": "wateruiv2.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.134.1",
@@ -82,36 +88,37 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "wateruiv2.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "transition": "slide",
         "type": "View",
-        "viewType": "XML",
         "path": "wateruiv2.view",
-        "async": true,
-        "viewPath": "wateruiv2.view"
+        "async": true
       },
       "routes": [
         {
+          "pattern": "Notification/{objectId}",
+          "name": "Object",
+          "target": "Object"
+        },
+        {
           "name": "RouteWorklist",
           "pattern": ":?query:",
-          "target": [
-            "TargetWorklist"
-          ]
+          "target": "TargetWorklist"
         }
       ],
       "targets": {
         "TargetWorklist": {
           "id": "Worklist",
           "name": "Worklist"
+        },
+        "Object": {
+          "name": "Object",
+          "id": "Object"
         }
       }
-    },
-    "rootView": {
-      "viewName": "wateruiv2.view.App",
-      "type": "XML",
-      "id": "App",
-      "async": true
     }
   }
 }

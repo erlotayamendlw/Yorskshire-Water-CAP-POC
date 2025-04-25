@@ -12,13 +12,14 @@ entity Notification
     MalfunctionEndTime : Timestamp;
     AttachmentsURL : String;
     VideoURL : String;
-    notificationDetail : Association to one NotificationDetail;
+    Analyst : String;
+    Media : Association to one Media;
 }
 
-entity NotificationDetail
+entity Media
 {
     key ID : String;
-    AIDescription : String;
+    url : String;
+    type: String;
     AITranscript : String;
-    VideoId : String;
 }

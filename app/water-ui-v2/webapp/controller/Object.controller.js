@@ -27,8 +27,8 @@ sap.ui.define([
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
 			
-			//var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			//oRouter.getRoute("object").attachPatternMatched(this._onObjectMatched, this);
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
 
 			// var iOriginalBusyDelay,
@@ -82,12 +82,18 @@ sap.ui.define([
 		 */
 		_onObjectMatched : function (oEvent) {
 			var sObjectId =  oEvent.getParameter("arguments").objectId;
+			
 			this.getModel().metadataLoaded().then( function() {
 				var sObjectPath = this.getModel().createKey("Products", {
 					ProductID :  sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
+
+			
+			var oModel = this.getView().getModel();
+			oModel.setProperty("/currentObjectId", sObjectId);
+
 		},
 
 		/**
@@ -141,6 +147,11 @@ sap.ui.define([
 			oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
 			oViewModel.setProperty("/shareSendEmailMessage",
 			oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+		},
+
+		viewRec : function (id) {
+			return id;
+
 		}
 
 	});

@@ -12,14 +12,15 @@ sap.ui.define([
 		 * On phones a additional history entry is created
 		 * @param {sap.m.ObjectListItem} oItem selected Item
 		 * @private
-		 */
-		_showObject : function (oItem) {
-			this.getOwnerComponent().getRouter().navTo("object", {
-				objectId: oItem.getBindingContext().getProperty("ProductID")
-			});
-			console.log("show object section" + oItem);
-		},
-
+		 
+		*_showObject : function (oItem) {
+		*	this.getOwnerComponent().getRouter().navTo("object", {
+		*		objectId: oItem.getBindingContext().getProperty("ProductID")
+		*	});
+		*	console.log("show object section" + oItem);
+		*},
+		*/
+		
         /**
 		 * Event handler when a table item gets pressed
 		 * @param {sap.ui.base.Event} oEvent the table selectionChange event
@@ -38,11 +39,10 @@ sap.ui.define([
 			console.log(sProductID);
 			console.log(oItem.getBindingContext());
 
-
 			 this.getOwnerComponent().getRouter().navTo("Object", {
 			 	objectId: sProductID
 			 })
-
+			 
 			// The source is the list item that got pressed
 			// this._showObject(oEvent.getSource());
 		},

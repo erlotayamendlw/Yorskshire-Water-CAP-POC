@@ -1,126 +1,280 @@
 <mvc:View
-	controllerName="wateruiv2.controller.Object"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:form="sap.ui.layout.form">	
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:vk="sap.ui.vk"
+    controllerName="wateruiv2.controller.Object"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:form="sap.ui.layout.form"
+>
+    <semantic:SemanticPage
+        id="semanticPage"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        busy="{objectView>/busy}"
+        busyIndicatorDelay="{objectView>/delay}"
+    >
+        <semantic:titleHeading>
+            <Title
+                id="_IDGenTitle"
+                text="{Analyst}"
+            />
+        </semantic:titleHeading>
 
-	<semantic:SemanticPage
-		id="semanticPage"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false"
-		busy="{objectView>/busy}"
-		busyIndicatorDelay="{objectView>/delay}">
-		<semantic:titleHeading>
-			<Title id = "title1" text="{ProductName}" />
-		</semantic:titleHeading>
-		<semantic:headerContent>
-			<FlexBox
-				id = "flexbox1"
-				alignItems="Start"
-				justifyContent="SpaceBetween">
-				<Panel id = "panel1" backgroundDesign="Transparent">
-					<ObjectAttribute
-						id = "objectAttribute1"
-						title="{i18n>ObjectProductIdText}"
-						text="{
-							path: 'ObjectID',
-							formatter: '.formatter.numberUnit'}"/>
-					<ObjectAttribute
-						id = "objectAttribute2"
-						title="{i18n>ObjectPriceTitle}"
-						text="{
+        <semantic:headerContent>
+            <HBox
+                id="_IDGenVBox4"
+                gap="3vh"
+            >
+                <VBox
+                    id="_IDGenHBox4"
+                    gap="3vw"
+                >
+                    <HBox id="_IDGenVBox6">
+                        <ObjectAttribute
+                            id="objectAttribute1"
+                            title="{i18n>ObjectViewRecommendation}"
+                            text="{
+                                path: '/Notification',
+                                formatter: '.formatter.viewRec'
+                            }"
+                        />
+                    </HBox>
+                    <HBox id="_IDGenVBox7">
+                        <ObjectAttribute
+                            id="_IDGenObjectAttribute"
+                            title="{i18n>ObjectViewStatus}"
+                            text="{
+							path: 'Date',
+							formatter: '.formatter.numberUnit'}"
+                        />
+                    </HBox>
+                </VBox>
+                <VBox
+                    id="_IDGenHBox5"
+                    gap="3vw"
+                >
+                    <HBox id="_IDGenVBox8">
+                        <ObjectAttribute
+                            id="objectAttribute2"
+                            title="{i18n>ObjectViewHeaderTechnicianNameLabel}"
+                            text="{
 							path: 'UnitPrice',
-							formatter: '.formatter.numberUnit'} EUR"/>
-				</Panel>
-				<Panel id = "panel2" backgroundDesign="Transparent">
-					<ObjectNumber
-						id="objectHeader"
-						unit="PC"
-						textAlign="End"
-						state="{
-							path: 'UnitsInStock',
-							formatter: '.formatter.quantityState'}"
-						number="{
-							path: 'UnitsInStock',
-							formatter: '.formatter.numberUnit'}">
-					</ObjectNumber>
-					<ObjectStatus
-						id = "objectStatus1"
-						text="{i18n>ObjectDiscontinuedStatusText}"
-						state="Error"
-						visible="{path:'Discontinued'}"/>
-					<ProgressIndicator
-						id = "projectIndicator1"
-						width="300px"
-						percentValue="{UnitsInStock}"
-						displayValue="{UnitsInStock}"
-						showValue="true"
-						state="{
-							path: 'UnitsInStock',
-							formatter: '.formatter.quantityState'}" />
-				</Panel>
+							formatter: '.formatter.numberUnit'}"
+                        />
+                    </HBox>
+                    <HBox id="_IDGenVBox9">
+                        <ObjectAttribute
+                            id="_IDGenObjectAttribute1"
+                            title="{i18n>ObjectViewHeaderAnalystNameLabel}"
+                            text="{
+							path: '/Notification/Analyst',
+							formatter: '.formatter.numberUnit'}"
+                        />
+                    </HBox>
+                </VBox>
+            </HBox>
+            <HBox id="_IDGenHBox6" ></HBox>
+            <HBox id="_IDGenHBox7" gap="3vh">
+            <ObjectAttribute id="_IDGenObjectAttribute3"
+                            title="Input info here"
+                            text="{
+							path: 'Date',
+							formatter: '.formatter.numberUnit'}"
+                        />
+            </HBox>
+        </semantic:headerContent>
 
-			</FlexBox>
-		</semantic:headerContent>
-		<semantic:content>
-			<Panel
-				id = "panel3"
-				backgroundDesign="Transparent"
-				headerText="{i18n>ObjectSupplierTabTitle}">
-				<content>
-					<form:SimpleForm
-						id = "form1"
-						maxContainerCols="2"
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanL="3"
-						labelSpanM="3"
-						emptySpanL="4"
-						emptySpanM="4"
-						columnsL="1"
-						columnsM="1">
-						<form:content>
-							<Label id = "label1" text="{i18n>ObjectSupplierName}"/>
-							<Text id = "text10" text="{Supplier/CompanyName}"/>
-							<Label id = "label2" text="{i18n>ObjectSupplierAddress}"/>
-							<Text id = "text11" text="{Supplier/Address}"/>
-							<Label id = "label3" text="{i18n>ObjectSupplierZipcode} / {i18n>ObjectSupplierCity}"/>
-							<Text id = "text12" text="{Supplier/PostalCode} / {Supplier/City}"/>
-							<Label id = "label4" text="{i18n>ObjectSupplierCountry}"/>
-							<Text id = "text13" text="{Supplier/Country}"/>
-						</form:content>
-					</form:SimpleForm>
-				</content>
-			</Panel>
-				<Panel
-					id = "panel4"
-					backgroundDesign="Transparent"
-					headerText="{i18n>ObjectCommentsTabTitle}">
-					<content>
-						<FeedInput id = "feedInput1" post=".onPost"/>
-						<List
-							id="idCommentsList"
-							noDataText="{i18n>ObjectCommentNoData}"
-							showSeparators="Inner"
-							items="{
-								path: 'productFeedback>/productComments',
-								sorter: {
-									path: 'date',
-									descending: true
-								}
-							}">
-							<FeedListItem
-								id = "feedListItem1"
-								info="{productFeedback>type}"
-								text="{productFeedback>comment}"
-								timestamp="{productFeedback>date}"/>
-						</List>
-					</content>
-				</Panel>
-		</semantic:content>
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-		</semantic:sendEmailAction>
-	</semantic:SemanticPage>
+        <semantic:content>
+            <HBox
+                id="_IDGenVBox"
+                columnGap="1vw"
+            >
+                <VBox
+                    id="_IDGenVBox1"
+                    width="70vw"
+                >
+                    <IconTabBar
+                        id="_IDGenIconTabBar"
+                        expanded="{device>/isNoPhone}"
+                        class="sapUiNoContentPadding"
+                    >
+                        <items>
+                            <IconTabFilter
+                                id="_IDGenIconTabFilter"
+                                text="Source Data"
+                                key="info"
+                            />
+                            <IconTabFilter
+                                id="_IDGenIconTabFilter2"
+                                text="Evidence Library"
+                                key="statistics"
+                            >
+                                <content>
+                                    <Table
+                                        id="_IDGenTable"
+                                        inset="false"
+                                        items="{
+				                            path: '/Notification',
+				                            sorter: {
+                                                path: 'Date'
+                                            },
+                                            parameters: {
+                                                'expand': 'NotificationDetail'
+                                            }
+                                        }"
+                                    >
+                                        <headerToolbar>
+                                            <Toolbar
+                                                id="_IDGenToolbar"
+                                                height="20vh"
+                                            >
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer"
+                                                />
+                                                <VBox id="_IDGenVBox3">
+                                                    <HBox id="_IDGenHBox3">
+                                                        <SearchField
+                                                            id="_IDGenSearchField"
+                                                            tooltip="{i18n>ObjectViewSearchText}"
+                                                            search=".onSearch"
+                                                            width="60vw"
+                                                            placeholder="Search Video Library"
+                                                        />
+                                                    </HBox>
+                                                    <filterbar:FilterBar
+                                                        id="_IDGenFilterBar"
+                                                    >
+                                                        <filterbar:filterGroupItems
+                                                        />
+                                                    </filterbar:FilterBar>
+                                                </VBox>
+                                            </Toolbar>
+                                        </headerToolbar>
+
+                                        <columns>
+                                            <Column
+                                                id="_IDGenColumn"
+                                                width="12em"
+                                            >
+                                                <Text
+                                                    id="_IDGenText"
+                                                    text="Image"
+                                                />
+                                            </Column>
+                                            <Column
+                                                id="_IDGenColumn1"
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                            >
+                                                <Text
+                                                    id="_IDGenText1"
+                                                    text="Image/Video URL"
+                                                />
+                                            </Column>
+                                            <Column
+                                                id="_IDGenColumn2"
+                                                minScreenWidth="Desktop"
+                                                demandPopin="true"
+                                                hAlign="End"
+                                            >
+                                                <Text
+                                                    id="_IDGenText2"
+                                                    text="Image ID"
+                                                />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem"
+                                                vAlign="Middle"
+                                                type="Navigation"
+                                                press=".onPress"
+                                            >
+                                                <cells>
+                                                <Image id="_IDGenImage" width="10vw" height="10vh" src="https://mtcopeland.com/wp-content/uploads/2021/11/shutterstock_1326117767-min-scaled.jpg" />
+                                                
+                                                    
+                                                    <Text
+                                                        id="_IDGenText3"
+                                                        text="{VideoURL}"
+                                                    />
+                                                    <Text
+                                                        id="_IDGenText4"
+                                                        text="{ID}"
+                                                    />
+                                                    <!-- <Text
+							        text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </content>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+                </VBox>
+
+                <VBox
+                    id="_IDGenVBox2"
+                    gap="5vh"
+                    justifyContent="SpaceAround"
+                    alignItems="Center"
+                    alignContent="Center"
+                    width="30vw"
+                >
+                    <HBox
+                        id="_IDGenHBox"
+                        height="25vh"
+                    >
+                        <Panel
+                            id="_IDGenPanel"
+                            headerText="Videos and Media"
+                            backgroundDesign="Solid"
+                            width="30vw"
+                            height="25vh"
+                        >
+                            <content />
+                        </Panel>
+                    </HBox>
+                    <HBox
+                        id="_IDGenHBox1"
+                        height="25vh"
+                    >
+                        <Panel
+                            id="_IDGenPane2"
+                            headerText="Key Observations"
+                            backgroundDesign="Solid"
+                            width="30vw"
+                            height="25vh"
+                        >
+                            <content />
+                        </Panel>
+                    </HBox>
+                    <HBox
+                        id="_IDGenHBox2"
+                        height="25vh"
+                    >
+                        <Panel
+                            id="_IDGenPanel1"
+                            headerText="Full Video Transcript"
+                            backgroundDesign="Solid"
+                            width="30vw"
+                            height="20vh"
+                        >
+                            <content />
+                        </Panel>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </semantic:content>
+        
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction
+                id="shareEmail"
+                press=".onShareEmailPress"
+            />
+        </semantic:sendEmailAction>
+    </semantic:SemanticPage>
 </mvc:View>

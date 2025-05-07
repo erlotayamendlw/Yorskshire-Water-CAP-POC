@@ -77,10 +77,10 @@
                             items="{
 				path: '/Notification',
 				sorter: {
-					path: 'Date'
+					path: 'CreationDate'
 				},
 				parameters: {
-					'expand': 'NotificationDetail'
+					'expand': 'NotificationMedia'
 				}
 			}"
                         >
@@ -161,19 +161,19 @@
                                     <cells>
                                         <ObjectIdentifier
                                             id="ObjectIdentifier1"
-                                            text="{ID}"
+                                            text="{MaintenanceNotification}"
                                         />
                                         <Text
                                             id="text6"
-                                            text="{Title}"
+                                            text="{NotificationText}"
                                         />
                                         <Text
                                             id="text7"
-                                            text="{Location}"
+                                            text="{FunctionalLocation}"
                                         />
                                         <Text
                                             id="text8"
-                                            text="{Date}"
+                                            text="{MalfunctionStartDate}"
                                         />
                                         <Text
                                             id="text9"

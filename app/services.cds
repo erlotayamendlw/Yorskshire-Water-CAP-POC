@@ -9,22 +9,22 @@ annotate CatalogService.Notification with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Value : ID,
+            Value : MaintenanceNotification,
             Label : 'Notification ID',
         },
         {
             $Type : 'UI.DataField',
-            Value : Title,
+            Value : NotificationText,
             Label : 'Title',
         },
         {
             $Type : 'UI.DataField',
-            Value : Location,
+            Value : FunctionalLocation,
             Label : 'Location',
         },
         {
             $Type : 'UI.DataField',
-            Value : Date,
+            Value : MalfunctionStartDate,
             Label : 'Date',
         },
     ]

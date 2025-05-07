@@ -1,6 +1,7 @@
-ID,AIDescription,AITranscript,VideoId
-9bd27762-f3cd-45fa-bd18-3027567ce389,Pipe leakage detected,Leakage at joint 3,VID123
-70dd29b4-6eae-4afe-b8f1-b4e54da0cde6,Corrosion detected,Corrosion at pipe 7,VID124
-756751b5-5336-431f-ad60-be84ab6d1445,Blockage detected,Blockage in pipe 2,VID125
-d19c19ed-3131-4529-9669-571ea27d0dbf,Crack detected,Crack in pipe 5,VID126
-a0f1e485-2bd3-4979-ad08-fa6468e269ab,Loose joint detected,Loose joint at pipe 8,VID127
+MaintenanceNotification,ID,Type,Title,Description,Transcript,URL,EncodingID
+MN0001,0001,Leak,Pipe leakage detected,Leakage at joint 3,http://video.url/1,VID123
+MN0001,0002,Leak,Pipe leakage detected,Leakage at joint 3,http://image.url/1,IMG123
+MN0002,0001,Corrosion,Corrosion detected,Corrosion at pipe 7,http://video.url/2,VID124
+MN0003,0001,Blockage,Blockage detected,Blockage in pipe 2,http://video.url/3,VID125
+MN0004,0001,Crack,Crack detected,Crack in pipe 5,http://video.url/4,VID126
+MN0005,0001,Loose,Loose joint detected,Loose joint at pipe 8,http://video.url/5,VID127

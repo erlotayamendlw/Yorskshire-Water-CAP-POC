@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],e=>{"use strict";return e.extend("wateruiv2.controller.Worklist",{onInit(){},onPress:function(e){var t=e.getSource();var o=t.getBindingContext().getPath();var n=o.match(/'([^']+)'/)[1];console.log(o);console.log(n);console.log(t.getBindingContext());this.getOwnerComponent().getRouter().navTo("Object",{objectId:n})}})});
+//# sourceMappingURL=Worklist.controller.js.map

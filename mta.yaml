@@ -56,37 +56,9 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - waterui.zip
-      name: waterui
-      target-path: resources/
-    - artifacts:
-      - wateroverview.zip
-      name: wateroverview
-      target-path: resources/
-    - artifacts:
       - wateruiv2.zip
       name: wateruiv2
       target-path: resources/
-- name: waterui
-  type: html5
-  path: app/water-ui
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: wateroverview
-  type: html5
-  path: app/water-overview
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
 - name: wateruiv2
   type: html5
   path: app/water-ui-v2

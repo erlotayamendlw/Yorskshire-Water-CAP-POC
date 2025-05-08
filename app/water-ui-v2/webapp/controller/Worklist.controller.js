@@ -1,6 +1,7 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], (Controller) => {
+    "sap/ui/core/mvc/Controller",
+	"sap/ui/model/Filter",
+], (Controller, Filter) => {
     "use strict";
 
     return Controller.extend("wateruiv2.controller.Worklist", {
@@ -46,6 +47,42 @@ sap.ui.define([
 			// The source is the list item that got pressed
 			// this._showObject(oEvent.getSource());
 		},
+
+		onPressWorkItem: function(oEvent) {
+			let oItem = oEvent.getParameter("listItem");
+			let oContext = oItem.getBindingContext(); // get the binding context
+		
+			if (oContext) {
+				let oData = oContext.getObject(); // get the data object
+				let notificationID = oData.MaintenanceNotification;
+				console.log("Selected Row Data:", oData);
+				console.log("Row ID:", notificationID);
+				this.getOwnerComponent().getRouter().navTo("Object", {
+					objectId: notificationID
+				})
+			}
+		},
+
+		onFilterSelect: function (oEvent) {
+			var oBinding = this.byId("idProductsTable").getBinding("items"),
+				sKey = oEvent.getParameter("key"),
+				// oUnitFilter = new Filter("WeightUnit", "EQ", "KG"),
+				oFilter;
+
+			if (sKey === "nofault") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'Low')], and: true});
+				oBinding.filter([oFilter]);
+			} else if (sKey === "unsure") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'Medium')], and: true});
+				oBinding.filter([oFilter]);
+			} else if (sKey === "fault") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'High')], and: true});
+				oBinding.filter([oFilter]);
+			} else {
+				oBinding.filter([]);
+			}
+		},
+
 		
 		
         

@@ -5,37 +5,22 @@
     xmlns:vbm="sap.ui.vbm"
     xmlns:l="sap.ui.layout"
     xmlns="sap.m"
->
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
     <Page
         id="page"
         title="{i18n>title}"
-    >
-        <content>
-            <List
-                id="list1"
-                items="{/Products}"
-                mode="SingleSelectMaster"
-                itemPress="onPress"
-            >
-                <StandardListItem
-                    id="StandardListItem1"
-                    title="{ProductName}"
-                    description="{ProductID}"
-                />
-            </List>
-        </content>
-
+        class="sapMShellGlobalOuterBackground">
         <l:FixFlex
             id="fixFlex1"
             class="fixFlexHorizontal"
-            vertical="false"
-        >
+            vertical="false">
             <l:flexContent>
                 <IconTabBar
                     id="iconTabBar"
-                    select=".onQuickFilter"
-                    expandable="false"
-                >
+                    select=".onFilterSelect"
+                    expandable="false">
                     <items>
                         <IconTabFilter
                             id="iconTF1"
@@ -47,7 +32,7 @@
                         <IconTabSeparator id="iconSep1" />
                         <IconTabFilter
                             id="iconTF2"
-                            key="inStock"
+                            key="nofault"
                             icon="sap-icon://message-success"
                             iconColor="Positive"
                             count="{worklistView>/inStock}"
@@ -55,7 +40,7 @@
                         />
                         <IconTabFilter
                             id="iconTF3"
-                            key="shortage"
+                            key="unsure"
                             icon="sap-icon://message-warning"
                             iconColor="Critical"
                             count="{worklistView>/shortage}"
@@ -63,7 +48,7 @@
                         />
                         <IconTabFilter
                             id="iconTF4"
-                            key="outOfStock"
+                            key="fault"
                             icon="sap-icon://message-error"
                             iconColor="Negative"
                             count="{worklistView>/outOfStock}"
@@ -71,19 +56,52 @@
                         />
                     </items>
                     <content>
+                         <!-- <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                            <fb:filterGroupItems>
+                                <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Maintenance ID" label="Maintenance ID" groupName="Group1" visibleInFilterBar="true">
+                                    <fb:control>
+                                        <MultiComboBox id="_IDGenMultiComboBox"
+                                            name="Maintenance ID"
+                                            selectionChange=".onSelectionChange"
+                                            items="{
+                                                path: '/Notification',
+                                                sorter: { path: 'MaintenanceNotification' },
+                                                templateShareable: true
+                                            }"
+                                        >
+                                            <core:Item id="_IDGenItem" key="{MaintenanceNotification}" text="{MaintenanceNotification}"/>
+                                        </MultiComboBox>
+                                    </fb:control>
+                                </fb:FilterGroupItem>
+                                 <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="Date" label="Date" groupName="Group2" visibleInFilterBar="true">
+                                    <fb:control>
+                                        <MultiComboBox id="_IDGenMultiComboBox2"
+                                            name="Date"
+                                            selectionChange=".onSelectionChange"
+                                            items="{
+                                                path: '/Notification',
+                                                sorter: { path: 'MalfunctionStartDate' },
+                                                templateShareable: true
+                                            }"
+                                        >
+                                            <core:Item id="_IDGenItem2" key="{MalfunctionStartDate}" text="{MalfunctionStartDate}"/>
+                                        </MultiComboBox>
+                                    </fb:control>
+                                </fb:FilterGroupItem>
+                            </fb:filterGroupItems>
+                        </fb:FilterBar>
                         <Table
                             id="idProductsTable"
                             inset="false"
                             items="{
-				path: '/Notification',
-				sorter: {
-					path: 'CreationDate'
-				},
-				parameters: {
-					'expand': 'NotificationMedia'
-				}
-			}"
-                        >
+                                path: '/Notification',
+                                sorter: {
+                                    path: 'CreationDate'
+                                },
+                                parameters: {
+                                    'expand': 'NotificationMedia'
+                                }
+                            }">
                             <headerToolbar>
                                 <Toolbar id="toolbar1">
                                     <Title
@@ -179,14 +197,31 @@
                                             id="text9"
                                             text="{VideoURL}"
                                         />
-                                        <!-- <Text
-							text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
                                     </cells>
                                 </ColumnListItem>
                             </items>
-                        </Table>
+                        </Table> -->
+
+                        <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Notification" persistencyKey="SmartFilter_Explored" basicSearchFieldName="NotificationText" enableBasicSearch="true" >
+                            <smartFilterBar:layoutData>
+                                <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0"/>
+                            </smartFilterBar:layoutData>
+                        </smartFilterBar:SmartFilterBar>
+                        <smartTable:SmartTable id="LineItemsSmartTable" entitySet="Notification" 
+                        smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" 
+                        beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true"
+                         header="Maintenance Notifications" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" 
+                         enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" 
+                         editTogglable="true" >
+                             <Table id="_IDGenTable1" selectionChange="onPressWorkItem" mode="SingleSelectMaster"> 
+                            </Table>
+                            <!-- layout data used to make the table growing but the filter bar fixed -->
+                            <smartTable:layoutData>
+                                <FlexItemData id="_IDGenFlexItemData" growFactor="1" baseSize="0%"/>
+                            </smartTable:layoutData>
+                        </smartTable:SmartTable>
                     </content>
-                </IconTabBar>
+                </IconTabBar>    
             </l:flexContent>
         </l:FixFlex>
     </Page>

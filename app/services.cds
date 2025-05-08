@@ -1,11 +1,6 @@
-
-
-
-
-
-
 using from './water-ui-v2/annotations';
 annotate CatalogService.Notification with @(
+    UI.SelectionFields: [ MaintenanceNotification, FunctionalLocation, MalfunctionStartDate],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
@@ -27,6 +22,23 @@ annotate CatalogService.Notification with @(
             Value : MalfunctionStartDate,
             Label : 'Date',
         },
+        {
+            $Type : 'UI.DataField',
+            Value : MalfunctionStartTime,
+            Label : 'Time',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Analyst,
+            Label : 'Analyst',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintPriority,
+            Criticality: MaintPriority,
+            Label : 'Maintenance Priority',
+        },
     ]
+    
 );
 

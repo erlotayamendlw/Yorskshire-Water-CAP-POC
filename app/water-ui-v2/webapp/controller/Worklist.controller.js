@@ -58,7 +58,8 @@ sap.ui.define([
 				console.log("Selected Row Data:", oData);
 				console.log("Row ID:", notificationID);
 				this.getOwnerComponent().getRouter().navTo("Object", {
-					objectId: notificationID
+					objectId: notificationID,
+					object: oData
 				})
 			}
 		},

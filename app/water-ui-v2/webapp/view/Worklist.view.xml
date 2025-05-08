@@ -12,11 +12,6 @@
         id="page"
         title="{i18n>title}"
         class="sapMShellGlobalOuterBackground">
-        <l:FixFlex
-            id="fixFlex1"
-            class="fixFlexHorizontal"
-            vertical="false">
-            <l:flexContent>
                 <IconTabBar
                     id="iconTabBar"
                     select=".onFilterSelect"
@@ -56,173 +51,48 @@
                         />
                     </items>
                     <content>
-                         <!-- <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
-                            <fb:filterGroupItems>
-                                <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Maintenance ID" label="Maintenance ID" groupName="Group1" visibleInFilterBar="true">
-                                    <fb:control>
-                                        <MultiComboBox id="_IDGenMultiComboBox"
-                                            name="Maintenance ID"
-                                            selectionChange=".onSelectionChange"
-                                            items="{
-                                                path: '/Notification',
-                                                sorter: { path: 'MaintenanceNotification' },
-                                                templateShareable: true
-                                            }"
-                                        >
-                                            <core:Item id="_IDGenItem" key="{MaintenanceNotification}" text="{MaintenanceNotification}"/>
-                                        </MultiComboBox>
-                                    </fb:control>
-                                </fb:FilterGroupItem>
-                                 <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="Date" label="Date" groupName="Group2" visibleInFilterBar="true">
-                                    <fb:control>
-                                        <MultiComboBox id="_IDGenMultiComboBox2"
-                                            name="Date"
-                                            selectionChange=".onSelectionChange"
-                                            items="{
-                                                path: '/Notification',
-                                                sorter: { path: 'MalfunctionStartDate' },
-                                                templateShareable: true
-                                            }"
-                                        >
-                                            <core:Item id="_IDGenItem2" key="{MalfunctionStartDate}" text="{MalfunctionStartDate}"/>
-                                        </MultiComboBox>
-                                    </fb:control>
-                                </fb:FilterGroupItem>
-                            </fb:filterGroupItems>
-                        </fb:FilterBar>
-                        <Table
-                            id="idProductsTable"
-                            inset="false"
-                            items="{
-                                path: '/Notification',
-                                sorter: {
-                                    path: 'CreationDate'
-                                },
-                                parameters: {
-                                    'expand': 'NotificationMedia'
-                                }
-                            }">
-                            <headerToolbar>
-                                <Toolbar id="toolbar1">
-                                    <Title
-                                        id="tableHeader"
-                                        text="{worklistView>/worklistTableTitle}"
-                                    />
-                                    <ToolbarSpacer id="toolbarSpacer1" />
-                                    <SearchField
-                                        id="searchField"
-                                        tooltip="{i18n>worklistSearchTooltip}"
-                                        search=".onSearch"
-                                        width="auto"
-                                    />
-                                </Toolbar>
-                            </headerToolbar>
-                            <columns>
-                                <Column
-                                    id="column1"
-                                    width="12em"
-                                >
-                                    <Text
-                                        id="text1"
-                                        text="Notification ID"
-                                    />
-                                </Column>
-                                <Column
-                                    id="column2"
-                                    minScreenWidth="Tablet"
-                                    demandPopin="true"
-                                >
-                                    <Text
-                                        id="text2"
-                                        text="Description"
-                                    />
-                                </Column>
-                                <Column
-                                    id="column3"
-                                    minScreenWidth="Desktop"
-                                    demandPopin="true"
-                                    hAlign="End"
-                                >
-                                    <Text
-                                        id="text3"
-                                        text="Location"
-                                    />
-                                </Column>
-                                <Column
-                                    id="column4"
-                                    minScreenWidth="Desktop"
-                                    demandPopin="true"
-                                    hAlign="Center"
-                                >
-                                    <Text
-                                        id="text4"
-                                        text="Date"
-                                    />
-                                </Column>
-                                <Column
-                                    id="column5"
-                                    hAlign="End"
-                                >
-                                    <Text
-                                        id="text5"
-                                        text="URL"
-                                    />
-                                </Column>
-                            </columns>
-                            <items>
-                                <ColumnListItem
-                                    id="columnListItem1"
-                                    vAlign="Middle"
-                                    type="Navigation"
-                                    press=".onPress"
-                                >
-                                    <cells>
-                                        <ObjectIdentifier
-                                            id="ObjectIdentifier1"
-                                            text="{MaintenanceNotification}"
-                                        />
-                                        <Text
-                                            id="text6"
-                                            text="{NotificationText}"
-                                        />
-                                        <Text
-                                            id="text7"
-                                            text="{FunctionalLocation}"
-                                        />
-                                        <Text
-                                            id="text8"
-                                            text="{MalfunctionStartDate}"
-                                        />
-                                        <Text
-                                            id="text9"
-                                            text="{VideoURL}"
-                                        />
-                                    </cells>
-                                </ColumnListItem>
-                            </items>
-                        </Table> -->
+                        <HBox id="_IDGenHBox8" alignItems="Start">
+                            <Panel id="_IDGenPanel3" headerText="Location">
+                                    <vbm:AnalyticMap id="vbi" width="20vw"
+                                    initialPosition="-2.4867;52.7388;0" initialZoom="6" >
+                                    
+                                        <vbm:regions>
+                                            <vbm:Region code="{code}" color="{color}" tooltip="{county}" />
+                                        </vbm:regions>
+                                        <vbm:Circles id="_IDGenCircles" items="{/Notification}" click="onClickItem"
+                                            contextMenu="onContextMenuItem">
+                                                <vbm:Circle id="_IDGenCircle" position="{Longitude};{Latitude};0" tooltip="{NotificationTextr}"
+                                                        radius="20" color="rgba(92,186,230,0.6)" colorBorder="rgb(255,255,255)"
+                                                        hotDeltaColor="rgba(92,186,230,0.8)" click="onClickCircle"
+                                                        contextMenu="onContextMenuCircle" />
+                                        </vbm:Circles>
+                                    </vbm:AnalyticMap>
 
-                        <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Notification" persistencyKey="SmartFilter_Explored" basicSearchFieldName="NotificationText" enableBasicSearch="true" >
-                            <smartFilterBar:layoutData>
-                                <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0"/>
-                            </smartFilterBar:layoutData>
-                        </smartFilterBar:SmartFilterBar>
-                        <smartTable:SmartTable id="LineItemsSmartTable" entitySet="Notification" 
-                        smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" 
-                        beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true"
-                         header="Maintenance Notifications" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" 
-                         enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" 
-                         editTogglable="true" >
-                             <Table id="_IDGenTable1" selectionChange="onPressWorkItem" mode="SingleSelectMaster"> 
-                            </Table>
-                            <!-- layout data used to make the table growing but the filter bar fixed -->
-                            <smartTable:layoutData>
-                                <FlexItemData id="_IDGenFlexItemData" growFactor="1" baseSize="0%"/>
-                            </smartTable:layoutData>
-                        </smartTable:SmartTable>
+                            </Panel>
+                            <VBox id="_IDGenVBox5">
+                                <Panel id="_IDGenPanel4" headerText="Worklist" class="sapUiResponsivePadding">
+                                    <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Notification" persistencyKey="SmartFilter_Explored" basicSearchFieldName="NotificationText" enableBasicSearch="true" >
+                                        <smartFilterBar:layoutData>
+                                            <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0"/>
+                                        </smartFilterBar:layoutData>
+                                    </smartFilterBar:SmartFilterBar>
+                                    <smartTable:SmartTable id="LineItemsSmartTable" entitySet="Notification" 
+                                    smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" 
+                                    beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true"
+                                        header="Maintenance Notifications" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" 
+                                        enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" 
+                                        editTogglable="true" >
+                                            <Table id="_IDGenTable1" selectionChange="onPressWorkItem" mode="SingleSelectMaster"> 
+                                        </Table>
+                                        <!-- layout data used to make the table growing but the filter bar fixed -->
+                                        <smartTable:layoutData>
+                                            <FlexItemData id="_IDGenFlexItemData" growFactor="1" baseSize="0%"/>
+                                        </smartTable:layoutData>
+                                    </smartTable:SmartTable>
+                                </Panel>
+                            </VBox>
+                        </HBox>
                     </content>
                 </IconTabBar>    
-            </l:flexContent>
-        </l:FixFlex>
     </Page>
 </mvc:View>

@@ -63,11 +63,10 @@ sap.ui.define([
 			}
 		},
 
-		onFilterSelect: function (oEvent) {
+		onClickCircle: function(oEvent){
 			var oBinding = this.byId("idProductsTable").getBinding("items"),
-				sKey = oEvent.getParameter("key"),
-				// oUnitFilter = new Filter("WeightUnit", "EQ", "KG"),
-				oFilter;
+			sKey = oEvent.getParameter("MaintenanceNotification"),
+			oFilter;
 
 			if (sKey === "nofault") {
 				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'Low')], and: true});
@@ -77,6 +76,26 @@ sap.ui.define([
 				oBinding.filter([oFilter]);
 			} else if (sKey === "fault") {
 				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'High')], and: true});
+				oBinding.filter([oFilter]);
+			} else {
+				oBinding.filter([]);
+			}
+		},
+
+		onFilterSelect: function (oEvent) {
+			var oBinding = this.byId("_IDGenTable1").getBinding("items"),
+				sKey = oEvent.getParameter("key"),
+				// oUnitFilter = new Filter("WeightUnit", "EQ", "KG"),
+				oFilter;
+
+			if (sKey === "nofault") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '3')], and: true});
+				oBinding.filter([oFilter]);
+			} else if (sKey === "unsure") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '2')], and: true});
+				oBinding.filter([oFilter]);
+			} else if (sKey === "fault") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '1')], and: true});
 				oBinding.filter([oFilter]);
 			} else {
 				oBinding.filter([]);

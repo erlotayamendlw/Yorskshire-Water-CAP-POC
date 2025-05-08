@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:tnt="sap.tnt" xmlns:navpopover="sap.ui.comp.navpopover"
     controllerName="wateruiv2.controller.Worklist"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
@@ -11,8 +11,35 @@
 	xmlns:smartTable="sap.ui.comp.smarttable">
     <Page
         id="page"
-        title="{i18n>title}"
-        class="sapMShellGlobalOuterBackground">
+        class="sapMShellGlobalOuterBackground"
+        showNavButton="true">
+                <HeaderContainer
+                    id="_IDGenHeaderContainer"
+                    backgroundDesign="Solid"
+                >
+                    <FlexBox
+                        id="_IDGenFlexBox2"
+                        height="60px"
+                    >
+                        <FlexBox
+                            id="_IDGenFlexBox1"
+                            width="82vw"
+                            height="100vh"
+                        />
+                        <FlexBox
+                            id="_IDGenFlexBox"
+                            displayInline="true"
+                            direction="RowReverse"
+                        >
+                            <Image
+                                id="_IDGenImage1"
+                                width="140px"
+                                height="60px"
+                                src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png"
+                            />
+                        </FlexBox>
+                    </FlexBox>
+                </HeaderContainer>
                 <smartchart:SmartChart id ="smartChartGeneral" enableAutoBinding="true" height="300px"
                     entitySet="Notification" useVariantManagement="false"
                     persistencyKey="PKeyChartExample" useChartPersonalisation="false"
@@ -70,7 +97,7 @@
                                     initialPosition="-2.4867;52.7388;0" initialZoom="6" >
                                     
                                         <vbm:regions>
-                                            <vbm:Region code="{code}" color="{color}" tooltip="{county}" />
+                                            <vbm:Region id="_IDGenRegion" code="{code}" color="{color}" tooltip="{county}" />
                                         </vbm:regions>
                                         <vbm:Circles id="_IDGenCircles" items="{/Notification}" click="onClickItem"
                                             contextMenu="onContextMenuItem">

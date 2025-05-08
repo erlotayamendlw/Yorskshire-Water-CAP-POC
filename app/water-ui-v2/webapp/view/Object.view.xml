@@ -20,7 +20,7 @@
                 id="_IDGenTitle"
                 text="{Analyst}"
             />
-        </semantic:titleHeading>
+        </semantic:titleHeading>    
 
         <semantic:headerContent>
             <HBox
@@ -193,7 +193,7 @@
                                                 press=".onPress"
                                             >
                                                 <cells>
-                                                <Image id="_IDGenImage" width="10vw" height="10vh" src="https://mtcopeland.com/wp-content/uploads/2021/11/shutterstock_1326117767-min-scaled.jpg" />
+                                                <Image id="_IDGenImage" width="10vw" height="10vh" src="{Thumbnail}" />
                                                 
                                                     
                                                     <Text

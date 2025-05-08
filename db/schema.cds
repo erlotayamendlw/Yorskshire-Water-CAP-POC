@@ -31,6 +31,9 @@ entity Notification
     AttachmentsURL : String;
     VideoURL : String;
     Analyst : String;
+    AssetLocation : String;
+    LocationName : String;
+    Thumbnail : String;
     NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
 

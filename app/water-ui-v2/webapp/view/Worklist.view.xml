@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:tnt="sap.tnt" xmlns:navpopover="sap.ui.comp.navpopover"
     controllerName="wateruiv2.controller.Worklist"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"

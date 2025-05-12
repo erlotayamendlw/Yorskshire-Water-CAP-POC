@@ -1,5 +1,8 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History",
+	"sap/ui/core/UIComponent"
+
 ], function (
 	BaseController,
 	JSONModel,
@@ -68,6 +71,10 @@ sap.ui.define([
 			} else {
 				this.getRouter().navTo("worklist", {}, true);
 			}
+		},
+
+		onBackButtonPress : function() {
+			window.history.go(-1);
 		},
 
 		/* =========================================================== */

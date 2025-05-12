@@ -8,6 +8,36 @@
     xmlns:semantic="sap.f.semantic"
     xmlns:form="sap.ui.layout.form"
 >
+
+<Page id="_IDGenPage"
+        showNavButton="true"
+        navButtonPress="onBackButtonPress"
+        
+    >
+        <HeaderContainer id="_IDGenHeaderContainer1"
+            backgroundDesign="Solid"
+        >
+            <FlexBox id="_IDGenFlexBox4"
+                height="60px"
+            >
+                <FlexBox id="_IDGenFlexBox5"
+                    width="82vw"
+                    height="100vh"
+                />
+                <FlexBox id="_IDGenFlexBox6"
+                    displayInline="true"
+                    direction="RowReverse"
+                >
+                    <Image id="_IDGenImage2"
+                        width="140px"
+                        height="60px"
+                        src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png"
+                    />
+                </FlexBox>
+            </FlexBox>
+        </HeaderContainer>
+        
+
     <semantic:SemanticPage
         id="semanticPage"
         headerPinnable="false"
@@ -277,4 +307,5 @@
             />
         </semantic:sendEmailAction>
     </semantic:SemanticPage>
+    </Page>
 </mvc:View>

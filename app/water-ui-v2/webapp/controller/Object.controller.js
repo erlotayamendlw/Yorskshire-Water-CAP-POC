@@ -90,9 +90,9 @@ sap.ui.define([
 		_onObjectMatched : function (oEvent) {
 			var sObjectId =  oEvent.getParameter("arguments").objectId;
 			
-			this.getModel().metadataLoaded().then( function() {
-				var sObjectPath = this.getModel().createKey("Products", {
-					ProductID :  sObjectId
+			this.oView.getModel().metadataLoaded().then( function() {
+				var sObjectPath = this.oView.getModel().createKey("Notification", {
+					MaintenanceNotification :  sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
@@ -110,8 +110,8 @@ sap.ui.define([
 		 * @private
 		 */
 		_bindView : function (sObjectPath) {
-			var oViewModel = this.getModel("objectView"),
-				oDataModel = this.getModel();
+			var oViewModel = this.oView.getModel("objectView"),
+				oDataModel = this.oView.getModel();
 
 			this.getView().bindElement({
 				path: sObjectPath,
@@ -123,11 +123,11 @@ sap.ui.define([
 							// otherwise there may be two busy indications next to each other on the
 							// screen. This happens because route matched handler already calls '_bindView'
 							// while metadata is loaded.
-							oViewModel.setProperty("/busy", true);
+							// oViewModel.setProperty("/busy", true);
 						});
 					},
 					dataReceived: function () {
-						oViewModel.setProperty("/busy", false);
+						// oViewModel.setProperty("/busy", false);
 					}
 				}
 			});
@@ -135,25 +135,25 @@ sap.ui.define([
 
 		_onBindingChange : function () {
 			var oView = this.getView(),
-				oViewModel = this.getModel("objectView"),
+				oViewModel = this.oView.getModel("objectView"),
 				oElementBinding = oView.getElementBinding();
 
 			// No data for the binding
 			if (!oElementBinding.getBoundContext()) {
-				this.getRouter().getTargets().display("objectNotFound");
+				// this.getRouter().getTargets().display("objectNotFound");
 				return;
 			}
 
-			var oResourceBundle = this.getResourceBundle(),
-				oObject = oView.getBindingContext().getObject(),
-				sObjectId = oObject.ProductID,
-				sObjectName = oObject.ProductName;
+			// var oResourceBundle = this.getResourceBundle(),
+			// 	oObject = oView.getBindingContext().getObject(),
+			// 	sObjectId = oObject.ProductID,
+			// 	sObjectName = oObject.ProductName;
 
-			oViewModel.setProperty("/busy", false);
-			oViewModel.setProperty("/shareSendEmailSubject",
-			oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-			oViewModel.setProperty("/shareSendEmailMessage",
-			oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+			// oViewModel.setProperty("/busy", false);
+			// oViewModel.setProperty("/shareSendEmailSubject",
+			// oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
+			// oViewModel.setProperty("/shareSendEmailMessage",
+			// oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
 		viewRec : function (id) {

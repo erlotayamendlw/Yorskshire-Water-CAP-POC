@@ -13,11 +13,11 @@ entity Notification
     MalfunctionEffectText : String;
     MalfunctionStartDate : Date;
     MalfunctionStartTime : Time;
-    MalfunctionStartDateTime : DateTime;
+    MalfunctionStartDateTime : String;
     MalfunctionEndDate : Date;
     MalfunctionEndTime : Time;
-    MalfunctionEndDateTime : DateTime;
-    MaintNotifRqdStartDateTime: DateTime;
+    MalfunctionEndDateTime : String;
+    MaintNotifRqdStartDateTime: String;
     MaintNotificationCatalog : String;
     MaintNotificationCodeGroup : String;
     MaintNotificationCode : String;
@@ -34,8 +34,17 @@ entity Notification
     AssetLocation : String;
     LocationName : String;
     Thumbnail : String;
+    TechObjIsEquipOrFuncnlLoc: String;
+    PlantName: String;
+    FunctionalLocationLabelName: String;
+    TechnicalObjectDescription: String;
+    NotificationCreationDateTime: String;
+    Asset: String;
+    NoOfRelatedIndicents: String;
+    PrevCRMComplaints: String;
     NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
+
 
 entity NotificationMedia
 {

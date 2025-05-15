@@ -53,7 +53,7 @@
         <semantic:titleHeading>
                  <Title
                     id="_IDGenTitle"
-                    text="Incident Details"
+                    text="{Analyst}"
                 />
             </semantic:titleHeading>
             <semantic:headerContent>
@@ -80,8 +80,9 @@
                                 id="_IDGenObjectAttribute"
                                 title="{i18n>ObjectViewStatus}"
                                 text="{
-							path: 'CreationDate',
-							formatter: '.formatter.numberUnit'}"
+                                    path: 'MaintPriority',
+                                    formatter: '.formatter.priorityMethod'
+                                }"
                             />
                         </HBox>
                     </VBox>

@@ -1,0 +1,7 @@
+MaintenanceNotification,ID,Type,Title,Description,Transcript,URL,EncodingID,Thumbnail
+MN0001,0001,Leak,Pipe leakage detected,Leakage at joint 3,http://video.url/1,VID123,ENC001,https://www.expresssewer.com/hubfs/broken-water-pipe-leaking.jpeg
+MN0001,0002,Leak,Pipe leakage detected,Leakage at joint 3,http://image.url/1,IMG123,ENC002,https://t3.ftcdn.net/jpg/02/74/31/06/360_F_274310631_9uDR6tAK2lxY0Nu3sxOhqyX1SekAS7iR.jpg
+MN0002,0001,Corrosion,Corrosion detected,Corrosion at pipe 7,http://video.url/2,VID124,ENC003,https://www.wmhendersoninc.com/wp-content/uploads/2020/12/Cost-Replace-Broken-Pipe-WM-Henderson-Photo.jpg
+MN0003,0001,Blockage,Blockage detected,Blockage in pipe 2,http://video.url/3,VID125,ENC004,https://www.checkatrade.com/blog/wp-content/uploads/2022/09/Burst-pipe.jpg
+MN0004,0001,Crack,Crack detected,Crack in pipe 5,http://video.url/4,VID126,ENC005,https://thumbs.dreamstime.com/b/water-leaking-rusted-broken-pipe-basement-dripping-onto-floor-urgent-repairs-water-dripping-pipe-broken-357986944.jpg
+MN0005,0001,Loose,Loose joint detected,Loose joint at pipe 8,http://video.url/5,VID127,ENC006,https://thumbs.dreamstime.com/b/water-leaking-rusted-broken-pipe-basement-dripping-onto-floor-urgent-repairs-water-dripping-pipe-broken-357986944.jpg

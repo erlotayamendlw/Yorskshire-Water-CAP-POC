@@ -11,8 +11,39 @@
 	xmlns:smartTable="sap.ui.comp.smarttable">
     <Page
         id="page"
-        title="{i18n>title}"
-        class="sapMShellGlobalOuterBackground">
+        class="sapMShellGlobalOuterBackground"
+        showNavButton="true"
+        
+        
+    >
+        <HeaderContainer
+            id="_IDGenHeaderContainer"
+            backgroundDesign="Solid"
+        >
+            <FlexBox
+                id="_IDGenFlexBox2"
+                height="60px"
+            >
+                <FlexBox
+                    id="_IDGenFlexBox1"
+                    width="82vw"
+                    height="100vh"
+                />
+                <FlexBox
+                    id="_IDGenFlexBox"
+                    displayInline="true"
+                    direction="RowReverse"
+                >
+                    <Image
+                        id="_IDGenImage1"
+                        width="140px"
+                        height="60px"
+                        src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png"
+                    />
+                </FlexBox>
+            </FlexBox>
+        </HeaderContainer>
+
                 <smartchart:SmartChart id ="smartChartGeneral" enableAutoBinding="true" height="300px"
                     entitySet="Notification" useVariantManagement="false"
                     persistencyKey="PKeyChartExample" useChartPersonalisation="false"

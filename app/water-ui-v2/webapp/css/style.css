@@ -16,3 +16,62 @@ header {
     font-family: fantasy;
     font-size: 100px;
 }
+
+/* Title of object page */
+#container-wateruiv2---Object--_IDGenTitle-inner
+{
+    color: rgba(0,98,216,255);
+}
+
+
+
+/* Titles in the boxes on object page - in the header */
+#container-wateruiv2---Object--_IDGenText6,
+#container-wateruiv2---Object--_IDGenText8,
+#container-wateruiv2---Object--_IDGenText10,
+#container-wateruiv2---Object--_IDGenText12,
+#container-wateruiv2---Object--_IDGenText14,
+#container-wateruiv2---Object--_IDGenText16,
+#container-wateruiv2---Object--_IDGenText18
+{
+    color: rgba(93,94,95,255);
+    font-weight: bolder;
+    padding: 4px;
+}
+
+/* Data in the boxes on object page - in the header */
+#container-wateruiv2---Object--_IDGenText7,
+#container-wateruiv2---Object--_IDGenText9,
+#container-wateruiv2---Object--_IDGenText11,
+#container-wateruiv2---Object--_IDGenText13,
+#container-wateruiv2---Object--_IDGenText15,
+#container-wateruiv2---Object--_IDGenText17,
+#container-wateruiv2---Object--_IDGenText19
+{
+    color: rgba(130,131,132,255);
+    padding: 4px;
+}
+
+
+/* 3 Labels at the top of the header for status, analyst and technician  */
+#__text3,
+#__text4,
+#__text5
+{
+    color: rgba(21,21,21,255);
+    font-weight: 500;
+    padding: 4px;
+}
+
+/* Reccomendation status label in the header */
+#__text2
+{
+    color: rgba(239,68,68,255);
+    font-weight: 500;
+    background-color: rgba(244,203,203,255);
+    border-radius: 5%;
+    border-color: rgba(144,129,130,255);
+    border-style: solid;
+    padding: 4px;
+    border-width: 1.5px;
+}

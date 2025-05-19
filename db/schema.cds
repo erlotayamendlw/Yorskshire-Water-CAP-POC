@@ -80,4 +80,5 @@ entity NotificationMedia
         Transcript : String;
         URL : String;
         EncodingID : String;
+        Thumbnail : String;
 }

@@ -51,17 +51,12 @@ entity Notification
         NoOfRelatedIncidents : Integer;
         RelatedCustomerComplaints : Integer;
         PreviousFlooding : Integer;
-        AnalysisOfCause : String;
-        Categorisation : String;
-        Severity : String;
         CustomerPropertyType : String;
         UpstreamSystemBehaviour : String;
-        Description : String;
-        AIConfidence : String;
         Liability : Decimal;
         ConfidenceScoreOfLiability : Decimal;
         UserConfirmedLiability : Decimal;
-        UserComments : Decimal;
+        UserComments : String;
         NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
 
@@ -77,7 +72,8 @@ entity NotificationMedia
         GenAIconfidence : Decimal;
         Type : String;
         Title : String;
-        Transcript : String;
+        GenAIDescription: String;
+        GenAITranscript : String;
         URL : String;
         EncodingID : String;
         Thumbnail : String;

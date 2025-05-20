@@ -8,6 +8,9 @@
     xmlns:semantic="sap.f.semantic"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
+    xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+
+
 >
     <Page
         id="_IDGenPage"
@@ -260,24 +263,22 @@
                                                     type="Navigation"
                                                     press=".onPress"
                                                 >
-                                                    <cells>
+                                                    <cells>        
                                                         <Image
                                                             id="_IDGenImage"
                                                             width="10vw"
                                                             height="10vh"
-                                                            src="{Thumbnail}"
+                                                            src="{NotificationMedia/Thumbnail}"
                                                         />
-
+                                                        
                                                         <Text
                                                             id="_IDGenText3"
-                                                            text="{VideoURL}"
+                                                            text=">{URL}"
                                                         />
                                                         <Text
                                                             id="_IDGenText4"
                                                             text="{MaintenanceNotification}"
                                                         />
-                                                        <!-- <Text
-							        text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
                                                     </cells>
                                                 </ColumnListItem>
                                             </items>

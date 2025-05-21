@@ -68,6 +68,16 @@
           "bundleName": "wateruiv2.i18n.i18n"
         }
       },
+      "NotificationMedia": {
+        "dataSource": "mainService",
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "data": {
+            "notifications": []
+          }
+        }
+      },
+      
       "": {
         "dataSource": "mainService",
         "preload": true,

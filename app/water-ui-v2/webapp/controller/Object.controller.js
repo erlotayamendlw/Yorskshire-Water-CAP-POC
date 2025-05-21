@@ -2,13 +2,18 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
-	"../model/formatter"
+	"../model/formatter",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+
 
 ], function (
 	BaseController,
 	JSONModel,
 	History,
-	formatter
+	formatter,
+	Filter,
+	FilterOperator
 ) {
 	"use strict";
 
@@ -34,7 +39,7 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
-
+			
 			// var iOriginalBusyDelay,
 			// 	oViewModel = new JSONModel({
 			// 		busy : true,
@@ -78,6 +83,32 @@ sap.ui.define([
 			window.history.go(-1);
 		},
 
+		onObjectPress : function(oEvent) {
+			// var oItem = oEvent.getSource();
+			// var sPath = oItem.getBindingContext().getPath();
+			// var sProductID = sPath.match(/'([^']+)'/)[1];
+
+			// console.log("Testing 3 lines");
+			// console.log(sPath);
+			// console.log(sProductID);
+			// console.log(oItem.getBindingContext());
+
+			//  this.getOwnerComponent().getRouter().navTo("Object", {
+			//  	objectId: sProductID
+			//  })
+
+			var oSelectedItem = oEvent.getParameter("listItem");
+			var oContext = oSelectedItem.getBindingContext();
+			var oData = oContext.getObject();
+			
+			// Update the side panel
+			var oDetailText = this.byId("detailText");
+			oDetailText.setText(`ID: ${oData.ID}\nTitle:${oData.Title} \nTranscript:${oData.GenAITranscript}`);
+			
+			var oURL = oData.URL;
+			this.getView().getModel().setProperty("/URL", oURL);
+		},
+
 		/* =========================================================== */
 		/* internal methods                                            */
 		/* =========================================================== */
@@ -97,10 +128,36 @@ sap.ui.define([
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
-
 			
 			var oModel = this.getView().getModel();
 			oModel.setProperty("/currentObjectId", sObjectId);
+			//------------
+			var that = this;
+			var oModel2 = this.getOwnerComponent().getModel();
+			var aFilters = [];
+			aFilters.push(new Filter("MaintenanceNotification", FilterOperator.EQ, sObjectId));
+			var urlParams = {}
+			return new Promise(function (resolve, reject) {
+				var url = "/NotificationMedia";
+				that.getView().setBusy(true);
+				oModel2.read(url, {
+						        urlParameters: urlParams,
+								filters: aFilters,
+								success: function (oData) {
+									that.getView().setBusy(false);
+									// oModel2.setModel(oData)
+									console.log("Successfully read!");
+									resolve(oData);
+								},
+								error: function (oError) {
+									that.getView().setBusy(false);
+									console.log("Rejected read!");
+									reject(oError);
+								}      
+							}	
+						);
+					}
+				);
 
 		},
 

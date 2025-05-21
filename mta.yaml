@@ -3,143 +3,146 @@ ID: GenAI
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: GenAI-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: GenAI-db
-  - name: GenAI-destination
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    instances: 1
-  build-parameters:
-    builder: npm-ci
-- name: GenAI-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: GenAI-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: GenAI
-  type: approuter.nodejs
-  path: app/router
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: srv-api
-      url: ~{srv-url}
-  - name: GenAI-destination
-  provides:
-  - name: app-api
-    properties:
-      app-protocol: ${protocol}
-      app-uri: ${default-uri}
-  parameters:
-    disk-quota: 256M
-    keep-existing-routes: true
-    memory: 256M
-- name: GenAI-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: GenAI-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  # --------------------- SERVER MODULE ------------------------
+  - name: GenAI-srv
+  # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - waterui.zip
-      name: waterui
-      target-path: resources/
-    - artifacts:
-      - wateroverview.zip
-      name: wateroverview
-      target-path: resources/
-    - artifacts:
-      - wateruiv2.zip
-      name: wateruiv2
-      target-path: resources/
-- name: waterui
-  type: html5
-  path: app/water-ui
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: wateroverview
-  type: html5
-  path: app/water-overview
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: wateruiv2
-  type: html5
-  path: app/water-ui-v2
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: GenAI-db
+      - name: GenAI-destination
+      - name: Water-auth
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+    build-parameters:
+      builder: npm-ci
+  # -------------------- SIDECAR MODULE ------------------------
+  - name: GenAI-db-deployer
+  # ------------------------------------------------------------
+    type: hdb
+    path: gen/db
+    requires:
+      - name: GenAI-db
+    parameters:
+      buildpack: nodejs_buildpack
+  # --------------------- APPROUTER MODULE ---------------------
+  - name: GenAI-approuter
+  # ------------------------------------------------------------
+    type: approuter.nodejs
+    path: app/router
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          name: srv-api
+          url: ~{srv-url}
+      - name: GenAI-destination
+      - name: GenAI-repo-host
+      - name: Water-auth
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+    parameters:
+      disk-quota: 256M
+      keep-existing-routes: true
+      memory: 256M
+  # --------------------- HTML5DEPLOYER MODULE -----------------
+  - name: GenAI-app-content
+  # ------------------------------------------------------------
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: GenAI-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - wateruiv2.zip
+          name: wateruiv2
+          target-path: resources/
+  # --------------------- UI MODULE ----------------------------
+  - name: wateruiv2
+  # ------------------------------------------------------------
+    type: html5
+    path: app/water-ui-v2
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
 resources:
-- name: GenAI-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: GenAI-destination
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: GenAI-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          existing_destinations_policy: update
-    service: destination
-    service-plan: lite
-  requires:
-  - name: srv-api
-- name: GenAI-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: GenAI-html5-service
-    service-plan: app-host
+  # --------------------- HTML5 Runtime ----------------------
+  - name: GenAI-html-runtime
+    # ------------------------------------------------------------
+    parameters:
+      service-name: GenAI-html5-runtime
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: GenAI-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: GenAI-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: GenAI-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+            existing_destinations_policy: update
+      service: destination
+      service-plan: lite
+    requires:
+      - name: srv-api
+  - name: GenAI-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: GenAI-html5-service
+      service-plan: app-host
+  - name: Water-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: water-xsuaa
+        tenant-mode: dedicated
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

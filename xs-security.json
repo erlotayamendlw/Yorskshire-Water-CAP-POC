@@ -1,0 +1,18 @@
+{
+  "scopes": [],
+  "attributes": [],
+  "role-templates": [],
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "refresh-token-validity": 1800,
+    "redirect-uris": [
+        "https://*.eu10cf.applicationstudio.cloud.sap/**",
+        "https://html5-apps-repo-dt.cfapps.eu20.hana.ondemand.com",
+        "https://duk---btp-payg-database-dev-genai.cfapps.eu20-001.hana.ondemand.com",
+        "https://*.cfapps.eu20-001.hana.ondemand.com/**",
+        "https://duk---btp-payg-database-dev-genai.cfapps.eu20-001.hana.ondemand.com/login/callback",
+        "http://localhost:5000",
+        "http://localhost:8080"
+    ]
+}
+}

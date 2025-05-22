@@ -8,11 +8,12 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartchart="sap.ui.comp.smartchart"
-    xmlns:smartTable="sap.ui.comp.smarttable">
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    >
     <Page id="page" class="sapMShellGlobalOuterBackground">
         <HeaderContainer id="_IDGenHeaderContainer" backgroundDesign="Solid">
             <Image id="_IDGenImage1" width="12vw" src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png" />
-            <Title text="Analyst Dashboard" titleStyle="H1" textAlign="Center" class="sapUiSmallMargin"></Title>
+            <Title text="Analyst Dashboard" titleStyle="H2" textAlign="Center" class="sapUiSmallMargin"></Title>
         </HeaderContainer>
 
         <!-- <smartchart:SmartChart id ="smartChartGeneral" enableAutoBinding="true" height="300px" entitySet="Notification" useVariantManagement="false" persistencyKey="PKeyChartExample" useChartPersonalisation="false" showFullScreenButton="true" selectionMode="Multi" showChartTooltip="true" showDrillBreadcrumbs="false" showDetailsButton="false" showDrillButtons="false" showSemanticNavigationButton="false" uiStateChange="onUiStateChange" header="Overview">

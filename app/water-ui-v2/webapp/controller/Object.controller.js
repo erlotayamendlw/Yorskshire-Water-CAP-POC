@@ -4,22 +4,33 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-
-
+	"sap/ui/model/FilterOperator",
+	"sap/m/Dialog",
+	"sap/m/Button",
+	"sap/m/library",
+	"sap/m/MessageToast",
+	"sap/ui/layout/HorizontalLayout",
+	"sap/ui/layout/VerticalLayout",
+	"sap/m/Text",
+	"sap/m/TextArea"
 ], function (
 	BaseController,
 	JSONModel,
 	History,
 	formatter,
 	Filter,
-	FilterOperator
+	FilterOperator,
+	Dialog,
+	Button,
+	MessageToast,
+	Text,
+	TextArea
 ) {
 	"use strict";
 
 	return BaseController.extend("wateruiv2.controller.Object", {
 
-	// return BaseController.extend("water-ui-v2/webapp/controller/Object.Controller.js", {
+		// return BaseController.extend("water-ui-v2/webapp/controller/Object.Controller.js", {
 
 		formatter: formatter,
 
@@ -31,15 +42,15 @@ sap.ui.define([
 		 * Called when the worklist controller is instantiated.
 		 * @public
 		 */
-		onInit : function () {
+		onInit: function () {
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
-			
+
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
-			
+
 			// var iOriginalBusyDelay,
 			// 	oViewModel = new JSONModel({
 			// 		busy : true,
@@ -69,7 +80,7 @@ sap.ui.define([
 		 * If not, it will replace the current entry of the browser history with the worklist route.
 		 * @public
 		 */
-		onNavBack : function() {
+		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 
 			if (sPreviousHash !== undefined) {
@@ -79,11 +90,11 @@ sap.ui.define([
 			}
 		},
 
-		onBackButtonPress : function() {
+		onBackButtonPress: function () {
 			window.history.go(-1);
 		},
 
-		onObjectPress : function(oEvent) {
+		onObjectPress: function (oEvent) {
 			// var oItem = oEvent.getSource();
 			// var sPath = oItem.getBindingContext().getPath();
 			// var sProductID = sPath.match(/'([^']+)'/)[1];
@@ -100,7 +111,7 @@ sap.ui.define([
 			var oSelectedItem = oEvent.getParameter("listItem");
 			var oContext = oSelectedItem.getBindingContext();
 			var oData = oContext.getObject();
-			
+
 			// Update the transcript and key observations panels
 			var oPanel2Text1 = this.byId("panel2text1");
 			oPanel2Text1.setText(`${oData.GenAIAnalysisOverview}`);
@@ -121,14 +132,14 @@ sap.ui.define([
 			oPanel3Text1.setText(`${oData.GenAITranscript}`);
 
 			// new sap.m.Text({ text : "{/URL}" }).placeAt("content");
-			
+
 
 			//Updating the video panel
 			// oDetailTitle.setText(`ID: ${oData.ID}\nTitle:${oData.Title} \nTranscript:${oData.GenAITranscript}`);
-			
+
 			var video = this.byId("myHtmlVideo").getDomRef();
 			video.src = oData.URL;
-			
+
 
 
 			// this.getView().getModel().setProperty("/URL", "https://www.w3schools.com/html/mov_bbb.mp4");
@@ -146,16 +157,16 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 * @private
 		 */
-		_onObjectMatched : function (oEvent) {
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
-			
-			this.oView.getModel().metadataLoaded().then( function() {
+		_onObjectMatched: function (oEvent) {
+			var sObjectId = oEvent.getParameter("arguments").objectId;
+
+			this.oView.getModel().metadataLoaded().then(function () {
 				var sObjectPath = this.oView.getModel().createKey("Notification", {
-					MaintenanceNotification :  sObjectId
+					MaintenanceNotification: sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
-			
+
 			var oModel = this.getView().getModel();
 			oModel.setProperty("/currentObjectId", sObjectId);
 			//------------
@@ -168,23 +179,23 @@ sap.ui.define([
 				var url = "/NotificationMedia";
 				that.getView().setBusy(true);
 				oModel2.read(url, {
-						        urlParameters: urlParams,
-								filters: aFilters,
-								success: function (oData) {
-									that.getView().setBusy(false);
-									// oModel2.setModel(oData)
-									console.log("Successfully read!");
-									resolve(oData);
-								},
-								error: function (oError) {
-									that.getView().setBusy(false);
-									console.log("Rejected read!");
-									reject(oError);
-								}      
-							}	
-						);
+					urlParameters: urlParams,
+					filters: aFilters,
+					success: function (oData) {
+						that.getView().setBusy(false);
+						// oModel2.setModel(oData)
+						console.log("Successfully read!");
+						resolve(oData);
+					},
+					error: function (oError) {
+						that.getView().setBusy(false);
+						console.log("Rejected read!");
+						reject(oError);
 					}
+				}
 				);
+			}
+			);
 
 		},
 
@@ -194,7 +205,7 @@ sap.ui.define([
 		 * @param {string} sObjectPath path to the object to be bound
 		 * @private
 		 */
-		_bindView : function (sObjectPath) {
+		_bindView: function (sObjectPath) {
 			var oViewModel = this.oView.getModel("objectView"),
 				oDataModel = this.oView.getModel();
 
@@ -218,7 +229,7 @@ sap.ui.define([
 			});
 		},
 
-		_onBindingChange : function () {
+		_onBindingChange: function () {
 			var oView = this.getView(),
 				oViewModel = this.oView.getModel("objectView"),
 				oElementBinding = oView.getElementBinding();
@@ -241,11 +252,37 @@ sap.ui.define([
 			// oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
-		viewRec : function (id) {
+		viewRec: function (id) {
 			return id;
 
-		}
+		},
 
+		onConfirmDialogPress: function () {
+			if (!this._oDialog) {
+				var frgaId = "openFrag";
+				this._oDialog = sap.ui.xmlfragment(this.getView().getId(),
+				"wateruiv2.view.fragment.Form", this);
+			} else {
+				this._oDialog.open();
+			}
+		},
+
+		onSubmitOK: function () {
+				this._oDialog.close();
+				var sPreviousHash = History.getInstance().getPreviousHash();
+
+				if (sPreviousHash !== undefined) {
+					history.go(-1);
+				} else {
+					this.getRouter().navTo("worklist", {}, true);
+				}
+			
+		},
+
+		onSubmitCancel: function () {
+				this._oDialog.close();
+			
+		}
 	});
 
 });

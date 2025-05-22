@@ -99,7 +99,7 @@
                                     initialPosition="-2.4867;52.7388;0" initialZoom="6" >
                                     
                                         <vbm:regions>
-                                            <vbm:Region code="{code}" color="{color}" tooltip="{county}" />
+                                            <vbm:Region id="_IDGenRegion" code="{code}" color="{color}" tooltip="{county}" />
                                         </vbm:regions>
                                         <vbm:Circles id="_IDGenCircles" items="{/Notification}" click="onClickItem"
                                             contextMenu="onContextMenuItem">

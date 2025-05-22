@@ -301,9 +301,9 @@
                                 height="30vh"
                             >
                                 <content>
-                                    <html:video width="100%" height="100%" controls="true" autoplay="true">
-                                        <html:source src="{URL}" type="video/mp4"/>
-                                        <html:source src="LongCrackCausedByDigger.mp4" type="video/mp4"/>
+                                    <html:video id="myHtmlVideo" width="100%" height="100%" controls="true" autoplay="true">
+                                        <html:source src="{/URL}" type="video/mp4"/>
+                                        <html:source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"/>
                                     </html:video>
                                 </content>
                             </Panel>
@@ -321,7 +321,25 @@
                                 height="25vh"
                             >
                                 <content>
-                                    <Text id="detailText" text="Select an item to see transcript"/>
+                                    
+                                      <VBox id="_IDGenVBox18" class="sapUiSmallMargin">
+                                        <Title id="_IDGenTitle1" text="Impact" level="H2" />
+                                        <Text id="panel2text1" text="Customer: Disruption to daily life, property damage, road closures, potential health risks from contaminated floodwater." />
+                                        
+                                        <Title id="_IDGenTitle2" text="Urgency and Priority" level="H2" />
+                                        <Text id="panel2text2" text="High. The frequency and severity of high tide flooding are increasing, causing significant damage and disruption. The cost of mitigation and adaptation measures is substantial." />
+ 
+                                        <Title id="_IDGenTitle3" text="Cause Category" level="H2" />
+                                        <Text id="panel2text3" text="Sea level rise due to climate change and sinking land." />
+ 
+                                        <Title id="_IDGenTitle4" text="Confidence Score for Cause" level="H2" />
+                                        <Text id="panel2text4" text="0.95" />
+ 
+                                        <Title id="_IDGenTitle5" text="Is the Problem Theirs?" level="H2" />
+                                        <Text id="panel2text5" text="No. The problem is primarily due to natural processes exacerbated by climate change, though human impacts on land subsidence play a role." />
+ 
+                                      </VBox>
+ 
                                 </content>
                             </Panel>
                         </HBox>
@@ -329,14 +347,20 @@
                             id="_IDGenHBox2"
                             height="25vh"
                         >
-                            <Panel
+                              <Panel
                                 id="_IDGenPanel1"
                                 headerText="Full Video Transcript"
                                 backgroundDesign="Solid"
                                 width="30vw"
-                                height="20vh"
+ 
                             >
-                                <content />
+                                <content>
+                                    <VBox id="_IDGenVBox19" class="sapUiSmallMargin">
+                                         <Text id="panel3text1" text="Flooding. It's often associated with heavy rains and severe storms.
+                                         But with rising sea levels, flooding in some coastal communities is now occurring during high tides and sunny days. It's called high tide flooding and it causes road closures, overwhelmed storm drains, and damage to sidewalks and roads. When coastal storms coincide with high tides, the flooding can worsen dramatically. Since 1990, high tide flooding has nearly tripled along US coastlines due to sea level rise caused by climate change and sinking land. The land can move due to underlying geology or human impacts. Sea level rise is expected to further increase the frequency and severity of high tide flooding. So what are people doing about it? Communities are installing costly water pumps to clear the streets of floodwaters.
+                                         Some people are building on stilts or moving to higher ground. We can't push down the rising seas, but we can plan for the future and adapt to the new normal." />
+                                    </VBox>
+                                </content>
                             </Panel>
                         </HBox>
                     </VBox>

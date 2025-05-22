@@ -101,12 +101,39 @@ sap.ui.define([
 			var oContext = oSelectedItem.getBindingContext();
 			var oData = oContext.getObject();
 			
-			// Update the side panel
-			var oDetailText = this.byId("detailText");
-			oDetailText.setText(`ID: ${oData.ID}\nTitle:${oData.Title} \nTranscript:${oData.GenAITranscript}`);
+			// Update the transcript and key observations panels
+			var oPanel2Text1 = this.byId("panel2text1");
+			oPanel2Text1.setText(`${oData.GenAIAnalysisOverview}`);
+
+			var oPanel2Text2 = this.byId("panel2text2");
+			oPanel2Text2.setText(`${oData.GenAISeverity}`);
+
+			var oPanel2Text3 = this.byId("panel2text3");
+			oPanel2Text3.setText(`${oData.GenAICategorisation}`);
+
+			var oPanel2Text4 = this.byId("panel2text4");
+			oPanel2Text4.setText(`${oData.GenAISeverity}`);
+
+			var oPanel2Text5 = this.byId("panel2text5");
+			oPanel2Text5.setText(`${oData.GenAIAnalysisOfCause}`);
+
+			var oPanel3Text1 = this.byId("panel3text1");
+			oPanel3Text1.setText(`${oData.GenAITranscript}`);
+
+			// new sap.m.Text({ text : "{/URL}" }).placeAt("content");
 			
-			var oURL = oData.URL;
-			this.getView().getModel().setProperty("/URL", oURL);
+
+			//Updating the video panel
+			// oDetailTitle.setText(`ID: ${oData.ID}\nTitle:${oData.Title} \nTranscript:${oData.GenAITranscript}`);
+			
+			var video = this.byId("myHtmlVideo").getDomRef();
+			video.src = oData.URL;
+			
+
+
+			// this.getView().getModel().setProperty("/URL", "https://www.w3schools.com/html/mov_bbb.mp4");
+			// this.getView().getModel().refresh(true);
+
 		},
 
 		/* =========================================================== */

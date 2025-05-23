@@ -1,5 +1,4 @@
-<mvc:View xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
-    xmlns:filterbar="sap.ui.comp.filterbar"
+<mvc:View xmlns:filterbar="sap.ui.comp.filterbar"
     xmlns:f="sap.f"
     xmlns:vk="sap.ui.vk" controllerName="wateruiv2.controller.Object"
     xmlns="sap.m"
@@ -7,24 +6,11 @@
     xmlns:semantic="sap.f.semantic"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-    xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
-    xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:fb="sap.ui.comp.filterbar"
-    xmlns:smartchart="sap.ui.comp.smartchart"
-    xmlns:smartTable="sap.ui.comp.smarttable">
+    xmlns:html="http://www.w3.org/1999/xhtml">
     <Page id="_IDGenPage" showNavButton="true" navButtonPress="onBackButtonPress" enableScrolling="false">
-        <HeaderContainer id="_IDGenHeaderContainer1" backgroundDesign="Solid">
-            <FlexBox id="_IDGenFlexBox4" height="10vh" width="90vw">
-                <FlexBox id="_IDGenFlexBox5" width="82vw" height="100vh" />
-                <FlexBox id="_IDGenFlexBox6" width="5vw" displayInline="true">
-                    <Image id="_IDGenImage2" width="12vw" height="9vh" src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png" />
-                </FlexBox>
-            </FlexBox>
-        </HeaderContainer>
-
         <semantic:SemanticPage id="semanticPage" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
             <semantic:titleHeading>
-                <Title id="_IDGenTitle" text="Incident Details" />
+                <Title id="_IDGenTitle" text="Maintenance Details" />
             </semantic:titleHeading>
             <semantic:headerContent>
                 <HBox id="_IDGenVBox4" gap="10vh">
@@ -223,6 +209,11 @@
                         <HBox id="_IDGenHBox2" height="25vh">
                             <Panel id="_IDGenPanel1" headerText="Full Video Transcript" backgroundDesign="Solid" width="30vw">
                                 <content>
+                                    <core:Icon src="sap-icon://ai" class="size1" color="#031E48">
+                                        <core:layoutData>
+                                            <FlexItemData growFactor="1" />
+                                        </core:layoutData>
+                                    </core:Icon>
                                     <VBox id="_IDGenVBox19" class="sapUiSmallMargin">
                                         <Text id="panel3text1" text="Flooding. It's often associated with heavy rains and severe storms.
                                          But with rising sea levels, flooding in some coastal communities is now occurring during high tides and sunny days. It's called high tide flooding and it causes road closures, overwhelmed storm drains, and damage to sidewalks and roads. When coastal storms coincide with high tides, the flooding can worsen dramatically. Since 1990, high tide flooding has nearly tripled along US coastlines due to sea level rise caused by climate change and sinking land. The land can move due to underlying geology or human impacts. Sea level rise is expected to further increase the frequency and severity of high tide flooding. So what are people doing about it? Communities are installing costly water pumps to clear the streets of floodwaters.
@@ -234,12 +225,12 @@
                     </VBox>
                 </HBox>
             </semantic:content>
-
-            <!--
-            <semantic:sendEmailAction>
-                <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
-            </semantic:sendEmailAction>
-            -->
         </semantic:SemanticPage>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Emphasized" class="sapUiSmallMargin" text="Final Recommendation" press=".onConfirmDialogPress"/>
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>

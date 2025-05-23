@@ -4,22 +4,33 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-
-
+	"sap/ui/model/FilterOperator",
+	"sap/m/Dialog",
+	"sap/m/Button",
+	"sap/m/library",
+	"sap/m/MessageToast",
+	"sap/ui/layout/HorizontalLayout",
+	"sap/ui/layout/VerticalLayout",
+	"sap/m/Text",
+	"sap/m/TextArea"
 ], function (
 	BaseController,
 	JSONModel,
 	History,
 	formatter,
 	Filter,
-	FilterOperator
+	FilterOperator,
+	Dialog,
+	Button,
+	MessageToast,
+	Text,
+	TextArea
 ) {
 	"use strict";
 
 	return BaseController.extend("wateruiv2.controller.Object", {
 
-	// return BaseController.extend("water-ui-v2/webapp/controller/Object.Controller.js", {
+		// return BaseController.extend("water-ui-v2/webapp/controller/Object.Controller.js", {
 
 		formatter: formatter,
 
@@ -31,11 +42,11 @@ sap.ui.define([
 		 * Called when the worklist controller is instantiated.
 		 * @public
 		 */
-		onInit : function () {
+		onInit: function () {
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
-			
+
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
@@ -77,7 +88,7 @@ sap.ui.define([
 		 * If not, it will replace the current entry of the browser history with the worklist route.
 		 * @public
 		 */
-		onNavBack : function() {
+		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 
 			if (sPreviousHash !== undefined) {
@@ -87,7 +98,7 @@ sap.ui.define([
 			}
 		},
 
-		onBackButtonPress : function() {
+		onBackButtonPress: function () {
 			window.history.go(-1);
 		},
 
@@ -178,12 +189,12 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 * @private
 		 */
-		_onObjectMatched : function (oEvent) {
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
-			
-			this.oView.getModel().metadataLoaded().then( function() {
+		_onObjectMatched: function (oEvent) {
+			var sObjectId = oEvent.getParameter("arguments").objectId;
+
+			this.oView.getModel().metadataLoaded().then(function () {
 				var sObjectPath = this.oView.getModel().createKey("Notification", {
-					MaintenanceNotification :  sObjectId
+					MaintenanceNotification: sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
@@ -226,7 +237,7 @@ sap.ui.define([
 		 * @param {string} sObjectPath path to the object to be bound
 		 * @private
 		 */
-		_bindView : function (sObjectPath) {
+		_bindView: function (sObjectPath) {
 			var oViewModel = this.oView.getModel("objectView"),
 				oDataModel = this.oView.getModel();
 
@@ -250,7 +261,7 @@ sap.ui.define([
 			});
 		},
 
-		_onBindingChange : function () {
+		_onBindingChange: function () {
 			var oView = this.getView(),
 				oViewModel = this.oView.getModel("objectView"),
 				oElementBinding = oView.getElementBinding();
@@ -273,7 +284,7 @@ sap.ui.define([
 			// oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
-		viewRec : function (id) {
+		viewRec: function (id) {
 			return id;
 
 		},
@@ -336,6 +347,32 @@ sap.ui.define([
 			return aFiltersWithValue;
 		},
 
+		onConfirmDialogPress: function () {
+			if (!this._oDialog) {
+				var frgaId = "openFrag";
+				this._oDialog = sap.ui.xmlfragment(this.getView().getId(),
+				"wateruiv2.view.fragment.Form", this);
+			} else {
+				this._oDialog.open();
+			}
+		},
+
+		onSubmitOK: function () {
+				this._oDialog.close();
+				var sPreviousHash = History.getInstance().getPreviousHash();
+
+				if (sPreviousHash !== undefined) {
+					history.go(-1);
+				} else {
+					this.getRouter().navTo("worklist", {}, true);
+				}
+			
+		},
+
+		onSubmitCancel: function () {
+				this._oDialog.close();
+			
+		}
 	});
 
 });

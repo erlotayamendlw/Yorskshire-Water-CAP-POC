@@ -8,21 +8,18 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartchart="sap.ui.comp.smartchart"
-    xmlns:smartTable="sap.ui.comp.smarttable">
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    >
     <Page id="page" class="sapMShellGlobalOuterBackground">
         <HeaderContainer id="_IDGenHeaderContainer" backgroundDesign="Solid">
-            <FlexBox id="_IDGenFlexBox2" height="15vh">
-                <FlexBox id="_IDGenFlexBox1" width="82vw" height="100vh" />
-                <FlexBox id="_IDGenFlexBox" displayInline="true" direction="RowReverse">
-                    <Image id="_IDGenImage1" width="12vw" height="9vh" src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png" />
-                </FlexBox>
-            </FlexBox>
+            <Image id="_IDGenImage1" width="12vw" src="https://delawareconsulting.sharepoint.com/sites/DelawareInspirationDay2025/Shared%20Documents/General/Inspiration%20Day%20Logo%202%20No%20BG%20Colour.png" />
+            <Title text="Analyst Dashboard" titleStyle="H2" textAlign="Center" class="sapUiSmallMargin"></Title>
         </HeaderContainer>
 
-        <smartchart:SmartChart id ="smartChartGeneral" enableAutoBinding="true" height="300px" entitySet="Notification" useVariantManagement="false" persistencyKey="PKeyChartExample" useChartPersonalisation="false" showFullScreenButton="true" selectionMode="Multi" showChartTooltip="true" showDrillBreadcrumbs="false" showDetailsButton="false" showDrillButtons="false" showSemanticNavigationButton="false" uiStateChange="onUiStateChange" header="Overview">
+        <!-- <smartchart:SmartChart id ="smartChartGeneral" enableAutoBinding="true" height="300px" entitySet="Notification" useVariantManagement="false" persistencyKey="PKeyChartExample" useChartPersonalisation="false" showFullScreenButton="true" selectionMode="Multi" showChartTooltip="true" showDrillBreadcrumbs="false" showDetailsButton="false" showDrillButtons="false" showSemanticNavigationButton="false" uiStateChange="onUiStateChange" header="Overview">
             <smartchart:toolbar>
             </smartchart:toolbar>
-        </smartchart:SmartChart>
+        </smartchart:SmartChart> -->
         <IconTabBar id="iconTabBar" select=".onFilterSelect" expandable="false">
             <items>
                 <IconTabFilter id="iconTF1" key="all" showAll="true" count="{worklistView>/countAll}" text="Total 26" />

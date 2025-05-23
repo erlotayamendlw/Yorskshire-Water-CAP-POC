@@ -13,6 +13,8 @@ sap.ui.define([
 	"sap/ui/layout/VerticalLayout",
 	"sap/m/Text",
 	"sap/m/TextArea"
+
+
 ], function (
 	BaseController,
 	JSONModel,
@@ -50,7 +52,15 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
+			
+			// Hides the image on the object page side panel at the start of the program
+			this.byId("myPanelImage").setVisible(false);
 
+
+			this.oTable = this.getView().byId("_IDGenTable");
+			this.getFiltersWithValues = this.getFiltersWithValues.bind(this);
+			this.oFilterBar = this.getView().byId("filterbar");
+			
 			// var iOriginalBusyDelay,
 			// 	oViewModel = new JSONModel({
 			// 		busy : true,
@@ -94,30 +104,17 @@ sap.ui.define([
 			window.history.go(-1);
 		},
 
-		onObjectPress: function (oEvent) {
-			// var oItem = oEvent.getSource();
-			// var sPath = oItem.getBindingContext().getPath();
-			// var sProductID = sPath.match(/'([^']+)'/)[1];
-
-			// console.log("Testing 3 lines");
-			// console.log(sPath);
-			// console.log(sProductID);
-			// console.log(oItem.getBindingContext());
-
-			//  this.getOwnerComponent().getRouter().navTo("Object", {
-			//  	objectId: sProductID
-			//  })
-
+		onObjectPress : function(oEvent) {
 			var oSelectedItem = oEvent.getParameter("listItem");
 			var oContext = oSelectedItem.getBindingContext();
 			var oData = oContext.getObject();
-
+			
 			// Update the transcript and key observations panels
 			var oPanel2Text1 = this.byId("panel2text1");
 			oPanel2Text1.setText(`${oData.GenAIAnalysisOverview}`);
 
 			var oPanel2Text2 = this.byId("panel2text2");
-			oPanel2Text2.setText(`${oData.GenAISeverity}`);
+			oPanel2Text2.setText(`${oData.GenAIAnalysisOfCause}`);
 
 			var oPanel2Text3 = this.byId("panel2text3");
 			oPanel2Text3.setText(`${oData.GenAICategorisation}`);
@@ -126,24 +123,61 @@ sap.ui.define([
 			oPanel2Text4.setText(`${oData.GenAISeverity}`);
 
 			var oPanel2Text5 = this.byId("panel2text5");
-			oPanel2Text5.setText(`${oData.GenAIAnalysisOfCause}`);
+			oPanel2Text5.setText(`${oData.GenAIconfidence}`);
+
+			var oPanel2Text6 = this.byId("panel2text6");
+			oPanel2Text6.setText(`${oData.GenAIDescription}`);
 
 			var oPanel3Text1 = this.byId("panel3text1");
 			oPanel3Text1.setText(`${oData.GenAITranscript}`);
 
 			// new sap.m.Text({ text : "{/URL}" }).placeAt("content");
 
-
 			//Updating the video panel
 			// oDetailTitle.setText(`ID: ${oData.ID}\nTitle:${oData.Title} \nTranscript:${oData.GenAITranscript}`);
 
-			var video = this.byId("myHtmlVideo").getDomRef();
-			video.src = oData.URL;
+			//Sets the image to be visible again in the object page side panel
+			this.byId("myPanelImage").setVisible(true);
+			this.byId("myPanelImage").rerender(); // Must be re rendered otherwise will require 2 clicks
 
+			var fileName = oData.URL;
+			this.displayCorrectFile(fileName);
+		},
 
+		displayCorrectFile : function(filePath) {
+			// Assume `sFileName` is the variable holding the file name or URL
+			var sFileName = filePath.toLowerCase();
 
-			// this.getView().getModel().setProperty("/URL", "https://www.w3schools.com/html/mov_bbb.mp4");
-			// this.getView().getModel().refresh(true);
+			// Define arrays of known video and image extensions
+			var videoFormats = [".mp4", ".avi", ".mov", ".wmv", ".flv", ".webm"];
+			var imageFormats = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp"];
+
+			// Define the DOM refrences to the image and video tags in the object view for the side panel
+			var panelImage = this.byId("myPanelImage").getDomRef();
+			var panelVideo = this.byId("myPanelVideo").getDomRef();
+
+			if (videoFormats.some(ext => sFileName.endsWith(ext))) {
+				console.log("This is a video file.");
+				// Hides the image and displays the video
+				panelImage.style.display = "none";
+				panelVideo.style.display = "flex";
+
+				// Replaces the video and pauses it
+				panelVideo.src = filePath;
+				panelVideo.pause();
+			}
+			else if (imageFormats.some(ext => sFileName.endsWith(ext))) {
+				console.log("This is an image file.");
+				// Hides the video and displays image
+				panelVideo.style.display = "none";
+				panelImage.style.display = "flex";
+
+				// Replaces the image
+				panelImage.src = filePath;
+			}
+			else {
+				console.log("Unknown file type.");
+			}
 
 		},
 
@@ -166,7 +200,7 @@ sap.ui.define([
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
-
+			
 			var oModel = this.getView().getModel();
 			oModel.setProperty("/currentObjectId", sObjectId);
 			//------------
@@ -179,24 +213,23 @@ sap.ui.define([
 				var url = "/NotificationMedia";
 				that.getView().setBusy(true);
 				oModel2.read(url, {
-					urlParameters: urlParams,
-					filters: aFilters,
-					success: function (oData) {
-						that.getView().setBusy(false);
-						// oModel2.setModel(oData)
-						console.log("Successfully read!");
-						resolve(oData);
-					},
-					error: function (oError) {
-						that.getView().setBusy(false);
-						console.log("Rejected read!");
-						reject(oError);
+						        urlParameters: urlParams,
+								filters: aFilters,
+								success: function (oData) {
+									that.getView().setBusy(false);
+									// oModel2.setModel(oData)
+									console.log("Successfully read!");
+									resolve(oData);
+								},
+								error: function (oError) {
+									that.getView().setBusy(false);
+									console.log("Rejected read!");
+									reject(oError);
+								}      
+							}	
+						);
 					}
-				}
 				);
-			}
-			);
-
 		},
 
 		/**
@@ -255,6 +288,64 @@ sap.ui.define([
 		viewRec: function (id) {
 			return id;
 
+		},
+
+		onSelectionChange: function (oEvent) {
+			// this.oSmartVariantManagement.currentVariantSetModified(true);
+			this.oFilterBar.fireFilterChange(oEvent);
+		},
+
+		// _updateLabelsAndTable: function () {
+		// 	// this.oExpandedLabel.setText(this.getFormattedSummaryTextExpanded());
+		// 	// this.oSnappedLabel.setText(this.getFormattedSummaryText());
+		// 	// this.oTable.setShowOverlay(true);
+		// },
+
+		onSearch: function () {
+			var aTableFilters = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				var oControl = oFilterGroupItem.getControl(),
+					aSelectedKeys = oControl.getSelectedKeys(),
+					aFilters = aSelectedKeys.map(function (sSelectedKey) {
+						return new Filter({
+							path: oFilterGroupItem.getName(),
+							operator: FilterOperator.Contains,
+							value1: sSelectedKey
+						});
+					});
+
+				if (aSelectedKeys.length > 0) {
+					aResult.push(new Filter({
+						filters: aFilters,
+						and: false
+					}));
+				}
+				return aResult;
+			}, []);
+
+			this.oTable.getBinding("items").filter(aTableFilters);
+			this.oTable.setShowOverlay(false);
+		},
+
+		// onFilterChange: function () {
+		// 	this._updateLabelsAndTable();
+		// },
+
+		// onAfterVariantLoad: function () {
+		// 	this._updateLabelsAndTable();
+		// },
+
+		getFiltersWithValues: function () {
+			var aFiltersWithValue = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				var oControl = oFilterGroupItem.getControl();
+
+				if (oControl && oControl.getSelectedKeys && oControl.getSelectedKeys().length > 0) {
+					aResult.push(oFilterGroupItem);
+				}
+
+				return aResult;
+			}, []);
+
+			return aFiltersWithValue;
 		},
 
 		onConfirmDialogPress: function () {

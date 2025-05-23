@@ -63,7 +63,7 @@ entity Notification
 
 entity NotificationMedia
 {
-    key MaintenanceNotification : String;
+    key MaintenanceNotification : String
     key ID : String;
         GenAIAnalysisOverview : String;
         GenAIAnalysisOfCause : String;

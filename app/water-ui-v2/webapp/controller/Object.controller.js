@@ -42,6 +42,11 @@ sap.ui.define([
 			
 			// Hides the image on the object page side panel at the start of the program
 			this.byId("myPanelImage").setVisible(false);
+
+
+			this.oTable = this.getView().byId("_IDGenTable");
+			this.getFiltersWithValues = this.getFiltersWithValues.bind(this);
+			this.oFilterBar = this.getView().byId("filterbar");
 			
 			// var iOriginalBusyDelay,
 			// 	oViewModel = new JSONModel({
@@ -271,7 +276,65 @@ sap.ui.define([
 		viewRec : function (id) {
 			return id;
 
-		}
+		},
+
+		onSelectionChange: function (oEvent) {
+			// this.oSmartVariantManagement.currentVariantSetModified(true);
+			this.oFilterBar.fireFilterChange(oEvent);
+		},
+
+		// _updateLabelsAndTable: function () {
+		// 	// this.oExpandedLabel.setText(this.getFormattedSummaryTextExpanded());
+		// 	// this.oSnappedLabel.setText(this.getFormattedSummaryText());
+		// 	// this.oTable.setShowOverlay(true);
+		// },
+
+		onSearch: function () {
+			var aTableFilters = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				var oControl = oFilterGroupItem.getControl(),
+					aSelectedKeys = oControl.getSelectedKeys(),
+					aFilters = aSelectedKeys.map(function (sSelectedKey) {
+						return new Filter({
+							path: oFilterGroupItem.getName(),
+							operator: FilterOperator.Contains,
+							value1: sSelectedKey
+						});
+					});
+
+				if (aSelectedKeys.length > 0) {
+					aResult.push(new Filter({
+						filters: aFilters,
+						and: false
+					}));
+				}
+				return aResult;
+			}, []);
+
+			this.oTable.getBinding("items").filter(aTableFilters);
+			this.oTable.setShowOverlay(false);
+		},
+
+		// onFilterChange: function () {
+		// 	this._updateLabelsAndTable();
+		// },
+
+		// onAfterVariantLoad: function () {
+		// 	this._updateLabelsAndTable();
+		// },
+
+		getFiltersWithValues: function () {
+			var aFiltersWithValue = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				var oControl = oFilterGroupItem.getControl();
+
+				if (oControl && oControl.getSelectedKeys && oControl.getSelectedKeys().length > 0) {
+					aResult.push(oFilterGroupItem);
+				}
+
+				return aResult;
+			}, []);
+
+			return aFiltersWithValue;
+		},
 
 	});
 

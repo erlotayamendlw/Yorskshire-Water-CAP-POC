@@ -326,6 +326,21 @@ sap.ui.define([
 			this.oTable.setShowOverlay(false);
 		},
 
+		onSearchClick: function (oEvent) {
+			// add filter for search
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery && sQuery.length > 0) {
+				var filter = new Filter("GenAIDescription", FilterOperator.Contains, sQuery);
+				aFilters.push(filter);
+			}
+
+			// update list binding
+			var oList = this.byId("_IDGenTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilters, "Application");
+		},
+
 		// onFilterChange: function () {
 		// 	this._updateLabelsAndTable();
 		// },

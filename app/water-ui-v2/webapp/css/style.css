@@ -10,8 +10,6 @@ header {
     font-size: 100px;
 }
 
-
-
 .iconTF2 {
     font-family: fantasy;
     font-size: 100px;
@@ -22,8 +20,6 @@ header {
 {
     color: rgba(0,98,216,255);
 }
-
-
 
 /* Titles in the boxes on object page - in the header */
 #container-wateruiv2---Object--_IDGenText6,
@@ -74,4 +70,13 @@ header {
     border-style: solid;
     padding: 4px;
     border-width: 1.5px;
+}
+
+#container-wateruiv2---Object--_IDGenVBox3,
+#container-wateruiv2---Object--_IDGenToolbar
+{
+    width: 100% !important;
+    padding: 0% !important;
+    margin: 0% !important;
+    align-self: stretch !important;
 }

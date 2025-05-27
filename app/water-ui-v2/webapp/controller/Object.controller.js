@@ -325,20 +325,25 @@ sap.ui.define([
 			this.oTable.getBinding("items").filter(aTableFilters);
 			this.oTable.setShowOverlay(false);
 		},
-
 		onSearchClick: function (oEvent) {
 			// add filter for search
 			var aFilters = [];
 			var sQuery = oEvent.getSource().getValue();
 			if (sQuery && sQuery.length > 0) {
-				var filter = new Filter("GenAIDescription", FilterOperator.Contains, sQuery);
-				aFilters.push(filter);
+				// var filter = new Filter("GenAIDescription", FilterOperator.Contains, sQuery);
+				// aFilters.push(createFilterfilter);
+				aFilters.push( this.createFilter("GenAIDescription", FilterOperator.Contains, sQuery, true) );
 			}
 
 			// update list binding
 			var oList = this.byId("_IDGenTable");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilters, "Application");
+		},
+
+		//This allows for the searchbars filted to work with lower case and upper case
+		createFilter: function(key, operator, value, useToLower) {
+			return new Filter(useToLower ? "tolower(" + key + ")" : key, operator, useToLower ? "'" + value.toLowerCase() + "'" : value);
 		},
 
 		// onFilterChange: function () {

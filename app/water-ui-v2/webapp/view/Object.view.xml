@@ -159,6 +159,9 @@
                                                 <Column id="_IDGenColumn3" width="12em">
                                                     <Text id="_IDGenText20" text="Description" />
                                                 </Column>
+                                                <Column id="_IDGenColumn4" width="12em">
+                                                    <Text id="_IDGenText21" text="Date" />
+                                                </Column>
                                                 <Column id="_IDGenColumn1" minScreenWidth="Tablet" demandPopin="true">
                                                     <Text id="_IDGenText1" text="Image/Video URL" />
                                                 </Column>
@@ -171,6 +174,7 @@
                                                     <cells>
                                                         <Image id="_IDGenImage" width="10vw" height="10vh" src="{Thumbnail}" />
                                                         <Text id="_IDGenText5" text="{GenAIDescription}" />
+                                                        <Text id="_IDGenText22" text="{Date}" />
                                                         <Text id="_IDGenText3" text="{URL}" />
                                                         <Text id="_IDGenText4" text="{MaintenanceNotification}" />
                                                     </cells>

@@ -80,3 +80,10 @@ header {
     margin: 0% !important;
     align-self: stretch !important;
 }
+
+
+/* Makes the right panels not overlap with the scrollbar */
+#container-wateruiv2---Object--_IDGenVBox
+ {
+    padding-right: 5% !important;
+}

@@ -91,27 +91,25 @@
             </semantic:headerContent>
 
             <semantic:content>
-                <HBox id="_IDGenVBox" columnGap="1vw">
-                    <VBox id="_IDGenVBox1" width="70vw">
+                <HBox id="_IDGenVBox" width="100vw" height="100vh" columnGap="1.5vw">
+                    <VBox id="_IDGenVBox1" width="70%" >
                         <IconTabBar id="_IDGenIconTabBar" expanded="{device>/isNoPhone}" class="sapUiNoContentPadding">
                             <items>
                                 <IconTabFilter id="_IDGenIconTabFilter" text="Source Data" key="info" />
                                 <IconTabFilter id="_IDGenIconTabFilter2" text="Evidence Library" key="statistics">
                                     <content>
-                                        <Table id="_IDGenTable" itemPress="onObjectPress" inset="false" items="{/NotificationMedia}">
+                                        <Table id="_IDGenTable" width="100%" itemPress="onObjectPress" inset="false" items="{/NotificationMedia}">
                                             <headerToolbar>
                                                 <Toolbar id="_IDGenToolbar" height="100%" width="100%">
                                                     <ToolbarSpacer id="_IDGenToolbarSpacer" />
                                                     <VBox id="_IDGenVBox3" height="100%" width="100%">
-                                                        <HBox id="_IDGenHBox3">
-                                                            <SearchField id="_IDGenSearchField"  tooltip="{i18n>ObjectViewSearchText}" liveChange=".onSearchClick" search=".onSearchClick" width="65vw" placeholder="Search Video Library" />
-                                                        </HBox>
+                                                        <SearchField id="_IDGenSearchField"  tooltip="{i18n>ObjectViewSearchText}" liveChange=".onSearchClick" search=".onSearchClick" placeholder="Search Video Library" />
                                                         <HBox id="_IDGenHBox7">
                                                             <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
                                                                 <fb:filterGroupItems>
                                                                     <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Type" label="Type" groupName="Group1" visibleInFilterBar="true">
                                                                         <fb:control>
-                                                                            <MultiComboBox id="_IDGenMultiComboBox" name="Type" selectionChange=".onSelectionChange" items="{
+                                                                            <MultiComboBox id="_IDGenMultiComboBox" placeholder="Select Type" name="Type" selectionChange=".onSelectionChange" items="{
                                                                                     path: '/NotificationMedia',
                                                                                     sorter: { path: 'Type'},
                                                                                     templateShareable: true
@@ -123,7 +121,7 @@
                                                                     </fb:FilterGroupItem>
                                                                     <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="GenAICategorisation" label="GenAICategorisation" groupName="Group1" visibleInFilterBar="true">
                                                                         <fb:control>
-                                                                            <MultiComboBox id="_IDGenMultiComboBox1" name="GenAICategorisation" selectionChange=".onSelectionChange" items="{
+                                                                            <MultiComboBox id="_IDGenMultiComboBox1" placeholder="Select Category" name="GenAICategorisation" selectionChange=".onSelectionChange" items="{
                                                                                     path: '/NotificationMedia',
                                                                                     sorter: { path: 'GenAICategorisation'},
                                                                                     templateShareable: true
@@ -135,7 +133,7 @@
 
                                                                     <fb:FilterGroupItem id="_IDGenFilterGroupItem" name="MaintenanceNotification" label="MaintenanceNotification" groupName="Group1" visibleInFilterBar="true">
                                                                         <fb:control>
-                                                                            <MultiComboBox id="_IDGenMultiComboBox3" name="MaintenanceNotification" selectionChange=".onSelectionChange" items="{
+                                                                            <MultiComboBox id="_IDGenMultiComboBox3" selectedKeys="{MaintenanceNotification}" placeholder="Select ID" name="MaintenanceNotification" selectionChange=".onSelectionChange" items="{
                                                                                     path: '/NotificationMedia',
                                                                                     sorter: { path: 'MaintenanceNotification'},
                                                                                     templateShareable: true
@@ -187,7 +185,7 @@
                         </IconTabBar>
                     </VBox>
 
-                    <VBox id="_IDGenVBox2" rowGap="5vh" justifyContent="SpaceAround" alignItems="Center" alignContent="Center" width="30vw">
+                    <VBox id="_IDGenVBox2" rowGap="5vh" justifyContent="SpaceAround" alignItems="Center" alignContent="Center" width="30%">
                         <HBox id="_IDGenHBox">
                             <Panel id="_IDGenPanel" headerText="Videos and Media" backgroundDesign="Solid" width="30vw" height="30vh">
                                 <content>

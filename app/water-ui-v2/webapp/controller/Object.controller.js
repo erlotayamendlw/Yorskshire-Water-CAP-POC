@@ -396,7 +396,7 @@ sap.ui.define([
 					var oData = {
 						MaintPriority: "Completed"
 					}
-					oModel.update("/Notification("+sObjectId+")", oData, {
+					oModel.update("/Notification("+ "'" +sObjectId+ "'" + ")", oData, {
 						success: function (oSuccess) {
 							console.log("----SUCCESSS----" + oSuccess.message);
 							var oTable = sap.ui.getCore().byId("LineItemsSmartTable");

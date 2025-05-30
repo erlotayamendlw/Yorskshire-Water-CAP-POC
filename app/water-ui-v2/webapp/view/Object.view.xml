@@ -20,8 +20,8 @@
                 <Title id="_IDGenTitle" text="Incident Details" />
             </semantic:titleHeading>
             <semantic:headerContent>
-                <HBox id="_IDGenVBox4" gap="10vh">
-                    <VBox id="_IDGenHBox4" gap="2vw">
+                <HBox id="_IDGenVBox4" gap="5vw">
+                    <VBox id="_IDGenHBox4" gap="2vh">
                         <HBox id="_IDGenVBox6">
                             <ObjectAttribute id="objectAttribute1" title="{i18n>ObjectViewRecommendation}" text="{}" />
                         </HBox>
@@ -29,10 +29,10 @@
                             <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>ObjectViewStatus}" text="{
                                     path: 'MaintPriority',
                                     formatter: '.formatter.priorityMethod'
-                                }" />
+                                    }" />
                         </HBox>
                     </VBox>
-                    <VBox id="_IDGenHBox5" gap="2vw">
+                    <VBox id="_IDGenHBox5" gap="2vh">
                         <HBox id="_IDGenVBox8">
                             <ObjectAttribute id="objectAttribute2" title="{i18n>ObjectViewHeaderTechnicianNameLabel}" text="{}" />
                         </HBox>
@@ -41,7 +41,7 @@
                         </HBox>
                     </VBox>
                 </HBox>
-                <HBox id="_IDGenHBox6" />
+                <HBox id="_IDGenHBox6" gap="10vw" />
 
                 <VBox id="_IDGenHBox10" height="15vh">
                     <HBox id="_IDGenHBox11" height="1vh" columnGap="1vw">
@@ -113,7 +113,6 @@
                                                                                     path: '/NotificationMedia',
                                                                                     sorter: { path: 'Type'},
                                                                                     templateShareable: true
-                                                                            
                                                                                 }">
                                                                                 <core:Item id="_IDGenItem" key="{Type}" text="{Type}" />
                                                                             </MultiComboBox>
@@ -171,9 +170,13 @@
                                                 <ColumnListItem id="_IDGenColumnListItem" vAlign="Middle" type="Navigation" press=".onPress">
                                                     <cells>
                                                         <Image id="_IDGenImage" width="10vw" height="10vh" src="{Thumbnail}" />
-                                                        <Text id="_IDGenText5" text="{GenAIDescription}" />
-                                                        <Text id="_IDGenText22" text="{Date}" />
-                                                        <Text id="_IDGenText3" text="{URL}" />
+                                                        <!-- Some text have max lines to 3 to prevent overflowing which could create large row boxes-->
+                                                        <Text id="_IDGenText5" text="{GenAIDescription}" maxLines="3" />
+                                                        <Text id="_IDGenText22" text="{
+                                                            path: 'DateAdded',
+                                                            formatter: '.formatter.date'
+                                                        }" />
+                                                        <Text id="_IDGenText3" text="{URL}" maxLines="3" />
                                                         <Text id="_IDGenText4" text="{MaintenanceNotification}" />
                                                     </cells>
                                                 </ColumnListItem>
@@ -185,9 +188,9 @@
                         </IconTabBar>
                     </VBox>
 
-                    <VBox id="_IDGenVBox2" rowGap="5vh" justifyContent="SpaceAround" alignItems="Center" alignContent="Center" width="30%">
+                    <VBox id="_IDGenVBox2" justifyContent="SpaceAround" alignItems="Center" alignContent="Center" width="30%">
                         <HBox id="_IDGenHBox">
-                            <Panel id="_IDGenPanel" headerText="Videos and Media" backgroundDesign="Solid" width="30vw" height="30vh">
+                            <Panel id="_IDGenPanel" headerText="Videos and Media" backgroundDesign="Solid" width="30vw" height="33vh">
                                 <content>
                                     <html:video id="myPanelVideo" width="100%" height="100%" controls="true">
                                         <html:source src="{/URL}" type="video/mp4" />
@@ -198,7 +201,7 @@
                             </Panel>
                         </HBox>
                         <HBox id="_IDGenHBox1">
-                            <Panel id="_IDGenPane2" headerText="Key Observations" backgroundDesign="Solid" width="30vw" height="30vh">
+                            <Panel id="_IDGenPane2" headerText="Key Observations" backgroundDesign="Solid" width="30vw" height="33vh">
                                 <content>
                                 <core:Icon id="_IDGenIcon2" src="sap-icon://ai" class="size1" color="#031E48">
                                         <core:layoutData>
@@ -228,7 +231,7 @@
                             </Panel>
                         </HBox>
                         <HBox id="_IDGenHBox2" height="25vh">
-                            <Panel id="_IDGenPanel1" headerText="Full Video Transcript" backgroundDesign="Solid" width="30vw" height="30vh">
+                            <Panel id="_IDGenPanel1" headerText="Full Video Transcript" backgroundDesign="Solid" width="30vw" height="33vh">
                                 <content>
                                     <core:Icon id="_IDGenIcon1" src="sap-icon://ai" class="size1" color="#031E48">
                                         <core:layoutData>

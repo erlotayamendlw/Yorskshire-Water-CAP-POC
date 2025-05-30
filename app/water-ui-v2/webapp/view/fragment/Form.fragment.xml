@@ -3,11 +3,11 @@
     xmlns:sf="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
     xmlns:u="sap.ui.unified">
-    <Dialog title="Final Recommendation">
-        <VBox class="sapUiSmallMargin">
-            <core:Icon src="sap-icon://ai" class="size1" color="#031E48">
+    <Dialog id="_IDGenDialog" title="Final Recommendation">
+        <VBox id="_IDGenVBox17" class="sapUiSmallMargin">
+            <core:Icon id="_IDGenIcon" src="sap-icon://ai" class="size1" color="#031E48">
                 <core:layoutData>
-                    <FlexItemData growFactor="1" />
+                    <FlexItemData id="_IDGenFlexItemData5" growFactor="1" />
                 </core:layoutData>
             </core:Icon>
             <Title id="_IDGenTitle-f6" text="AI Recommendation" level="H1" />
@@ -23,28 +23,28 @@
             <Text id="panel2text-f3" text="Sea level rise due to climate change and sinking land." />
 
             <Text id="_IDGenTitle-f4" text="Confidence Score for Cause:" />
-            <ProgressIndicator class="sapUiSmallMarginBottom" percentValue="90" displayValue="90%" showValue="true" state="Success" />
+            <ProgressIndicator id="_IDGenProgressIndicator" class="sapUiSmallMarginBottom" percentValue="90" displayValue="90%" showValue="true" state="Success" />
 
             <Text id="_IDGenTitle-f5" text="Is the Problem Theirs?" />
             <Text id="panel2text-f5" text="No. The problem is primarily due to natural processes exacerbated by climate change, though human impacts on land subsidence play a role." />
 
-            <VBox class="sapUiSmallMargin">
+            <VBox id="_IDGenVBox20" class="sapUiSmallMargin">
                 <Title id="_IDGenTitle-f8" text="Final Comments" level="H1" />
                 <TextArea id="analystComment" width="100%"></TextArea>
             </VBox>
 
-            <VBox class="sapUiSmallMarginEnd">
-                <Title text="Reportable to OFWAT?" />
+            <VBox id="_IDGenVBox21" class="sapUiSmallMarginEnd">
+                <Title id="_IDGenTitle7" text="Reportable to OFWAT?" />
                 <RadioButtonGroup id="groupB" valueState="None">
-                    <RadioButton text="Reportable" selected="true" />
-                    <RadioButton text="Not Reportable" />
+                    <RadioButton id="_IDGenRadioButton" text="Reportable" selected="true" />
+                    <RadioButton id="_IDGenRadioButton1" text="Not Reportable" />
                 </RadioButtonGroup>
             </VBox>
 
         </VBox>
-        <HBox class="sapUiLargeMargin">
-            <Button text="Submit" type="Emphasized" iconFirst="true" width="auto" iconDensityAware="false" press="onSubmitOK"/>
-            <Button text="Cancel" type="Default" iconFirst="true" width="auto" iconDensityAware="false" press="onSubmitCancel"/>
+        <HBox id="_IDGenHBox3" class="sapUiLargeMargin">
+            <Button id="_IDGenButton1" text="Submit" type="Emphasized" iconFirst="true" width="auto" iconDensityAware="false" press="onSubmitOK"/>
+            <Button id="_IDGenButton2" text="Cancel" type="Default" iconFirst="true" width="auto" iconDensityAware="false" press="onSubmitCancel"/>
         </HBox>
     </Dialog>
 </core:FragmentDefinition>

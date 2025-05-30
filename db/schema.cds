@@ -77,4 +77,6 @@ entity NotificationMedia
         URL : String;
         EncodingID : String;
         Thumbnail : String;
+        DateAdded: Date;
+        TimeAdded: Time;
 }

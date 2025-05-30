@@ -54,8 +54,10 @@
                                     <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0"/>
                                 </smartFilterBar:layoutData>
                             </smartFilterBar:SmartFilterBar>
-                            <smartTable:SmartTable id="LineItemsSmartTable" entitySet="Notification" smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Maintenance Notifications" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true">
-                                <Table id="_IDGenTable1" selectionChange="onPressWorkItem" mode="SingleSelectMaster">
+                            <smartTable:SmartTable id="LineItemsSmartTable"  entitySet="Notification" smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Maintenance Notifications" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true">
+                                <Table id="_IDGenTable1" selectionChange="onPressWorkItem" mode="SingleSelectMaster"
+                                >
+                                
                                 </Table>
                                 <!-- layout data used to make the table growing but the filter bar fixed -->
                                 <smartTable:layoutData>

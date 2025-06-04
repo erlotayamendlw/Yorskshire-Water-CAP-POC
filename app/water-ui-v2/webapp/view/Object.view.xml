@@ -26,10 +26,16 @@
                             <ObjectAttribute id="objectAttribute1" title="{i18n>ObjectViewRecommendation}" text="{}" />
                         </HBox>
                         <HBox id="_IDGenVBox7">
-                            <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>ObjectViewStatus}" text="{
-                                    path: 'MaintPriority',
-                                    formatter: '.formatter.priorityMethod'
-                                    }" />
+                            <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>ObjectViewStatus}"
+                                    text="{
+                                        path: 'MaintPriority',
+                                        formatter: '.formatter.priorityMethod'
+                                    }"
+                                    class="{
+                                        path: 'MaintPriority',
+                                        formatter: '.formatter.priorityClass'
+                                    }"
+                                    />
                         </HBox>
                     </VBox>
                     <VBox id="_IDGenHBox5" gap="2vh">
@@ -95,8 +101,8 @@
                     <VBox id="_IDGenVBox1" width="70%" >
                         <IconTabBar id="_IDGenIconTabBar" expanded="{device>/isNoPhone}" class="sapUiNoContentPadding">
                             <items>
-                                <IconTabFilter id="_IDGenIconTabFilter" text="Source Data" key="info" />
-                                <IconTabFilter id="_IDGenIconTabFilter2" text="Evidence Library" key="statistics">
+                                <IconTabFilter id="_IDGenIconTabFilter" text="Evidence" key="info" />
+                                <IconTabFilter id="_IDGenIconTabFilter2" text="Media Library" key="statistics">
                                     <content>
                                         <Table id="_IDGenTable" width="100%" itemPress="onObjectPress" inset="false" items="{/NotificationMedia}">
                                             <headerToolbar>
@@ -259,7 +265,7 @@
         <footer>
             <OverflowToolbar id="_IDGenOverflowToolbar">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
-                <Button id="_IDGenButton" type="Emphasized" class="sapUiSmallMargin" text="Finalised Investigation" press=".onConfirmDialogPress"/>
+                <Button id="_IDGenButton" type="Emphasized" class="sapUiSmallMargin" text="Finalise Investigation" press=".onConfirmDialogPress()"/>
             </OverflowToolbar>
         </footer>
     </Page>

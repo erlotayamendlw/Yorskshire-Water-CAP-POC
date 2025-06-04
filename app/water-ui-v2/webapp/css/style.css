@@ -98,3 +98,9 @@ header {
     border-color: black;
     border-style: solid;
 } */
+
+.Completed
+#__status0-container-wateruiv2---Worklist--_IDGenTable1-0-text
+{
+    color: red !important;
+}

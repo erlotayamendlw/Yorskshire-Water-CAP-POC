@@ -13,20 +13,23 @@
             <Title id="_IDGenTitle-f6" text="AI Recommendation" level="H1" />
             <!-- <Text id="panel2text-f6" text="Customer: Disruption to daily life, property damage, road closures, potential health risks from contaminated floodwater." /> -->
 
-            <Text id="_IDGenTitle-f1" text="Impact:" />
-            <Text id="panel2text-f1" text="Customer: Disruption to daily life, property damage, road closures, potential health risks from contaminated floodwater." />
+            <Text id="_IDGenTitle-f1" text="Overview:" />
+            <Text id="panel2text-f1" text="{NotificationMediaModel>/GenAIAnalysisOverview}" />
 
-            <Text id="_IDGenTitle-f2" text="Urgency and Priority:" />
-            <Text id="panel2text-f2" text="High. The frequency and severity of high tide flooding are increasing, causing significant damage and disruption. The cost of mitigation and adaptation measures is substantial." />
+            <Text id="_IDGenTitle-f2" text="Cause Category:" />
+            <Text id="panel2text-f2" text="{NotificationMediaModel>/GenAIAnalysisOfCause}" />
 
-            <Text id="_IDGenTitle-f3" text="Cause Category:" />
-            <Text id="panel2text-f3" text="Sea level rise due to climate change and sinking land." />
+            <Text id="_IDGenText24" text="Categorisation:" />
+            <Text id="_IDGenText25" text="{NotificationMediaModel>/GenAICategorisation}" />
+
+            <Text id="_IDGenTitle-f3" text="Severity:" />
+            <Text id="panel2text-f3" text="{NotificationMediaModel>/GenAISeverity}" />
 
             <Text id="_IDGenTitle-f4" text="Confidence Score for Cause:" />
-            <ProgressIndicator id="_IDGenProgressIndicator" class="sapUiSmallMarginBottom" percentValue="90" displayValue="90%" showValue="true" state="Success" />
+            <ProgressIndicator id="_IDGenProgressIndicator" class="sapUiSmallMarginBottom" percentValue="{NotificationMediaModel>/GenAIconfidence}" displayValue= "{NotificationMediaModel>/GenAIconfidence}" showValue="true" state="Success" />
 
             <Text id="_IDGenTitle-f5" text="Is the Problem Theirs?" />
-            <Text id="panel2text-f5" text="No. The problem is primarily due to natural processes exacerbated by climate change, though human impacts on land subsidence play a role." />
+            <Text id="panel2text-f5" text="TEST DATA: No. The problem is primarily due to natural processes exacerbated by climate change, though human impacts on land subsidence play a role." />
 
             <VBox id="_IDGenVBox20" class="sapUiSmallMargin">
                 <Title id="_IDGenTitle-f8" text="Final Comments" level="H1" />

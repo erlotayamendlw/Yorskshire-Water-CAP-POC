@@ -368,11 +368,51 @@ sap.ui.define([
 			return aFiltersWithValue;
 		},
 
+		
 		onConfirmDialogPress: function () {
+			var that = this;
+			var oView = this.getView();
+			var oModel = oView.getModel(); // or use a named model if needed
+			// var oModel = this.getOwnerComponent().getModel();
+			var oContext = oView.getBindingContext(); // or get from selected item
+			console.log("Model here!: " + oModel);
+			// if(oModel instanceof sap.ui.model.Model){
+			// 	console.log("Safe");
+			// }
+
 			if (!this._oDialog) {
-				var frgaId = "openFrag";
-				this._oDialog = sap.ui.xmlfragment(this.getView().getId(),
-				"wateruiv2.view.fragment.Form", this);
+				// var frgaId = "openFrag";
+				// this._oDialog = sap.ui.xmlfragment(
+				// 	this.getView().getId(),
+				// 	"wateruiv2.view.fragment.Form", this
+				// );
+				
+				// this._oDialog.setModel(oModel);
+				// this._oDialog.setBindingContext(oContext);
+				// oView.addDependent(this._oDialog); // Optional
+
+				var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
+				var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
+				// oModel.setProperty(sPath + "/MaintPriority", "Completed");
+				oModel.read("/NotificationMedia("+ "'" +sObjectId+ "'" + ")", {
+					success: function (oSuccess) {
+						console.log("----SUCCESSS FRAGMENT BIDNING----" + oSuccess);
+						// var frgaId = "openFrag";
+						that._oDialog = sap.ui.xmlfragment(
+							that.getView().getId(),
+							"wateruiv2.view.fragment.Form", that
+						);
+						// sap.ui.getCore().setModel(new sap.ui.model.json.JSONModel(oData), "modelSource");
+						that._oDialog.setModel(new sap.ui.model.json.JSONModel(oSuccess), "NotificationMediaModel");
+						// var oTable = sap.ui.getCore().byId("LineItemsSmartTable");
+						// oTable.getBinding("items").refresh();
+					},
+					error: function (oErrorMsg) {
+						console.log("!!!FRAGMENT BIDNING ERROR!!!" + oErrorMsg.message);
+						// reject(oError);
+					}	     
+				});
+
 			} else {
 				this._oDialog.open();
 			}

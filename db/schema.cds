@@ -57,15 +57,14 @@ entity Notification
         ConfidenceScoreOfLiability : Decimal;
         UserConfirmedLiability : Decimal;
         UserComments : String;
-        Technician : String;
         NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
 
 
 entity NotificationMedia
 {
-    key MaintenanceNotification : String;
-        ID : String;
+    key MaintenanceNotification : String
+    key ID : String;
         GenAIAnalysisOverview : String;
         GenAIAnalysisOfCause : String;
         GenAICategorisation : String;
@@ -78,6 +77,4 @@ entity NotificationMedia
         URL : String;
         EncodingID : String;
         Thumbnail : String;
-        DateAdded: Date;
-        TimeAdded: Time;
 }

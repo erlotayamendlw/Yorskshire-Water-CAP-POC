@@ -18,16 +18,12 @@ sap.ui.define([
                         return "Medium";
                     case "3":
                         return "Low";
-                    case "4":
-                        return "Completed";
                     case "High":
                         return "High";
                     case "Medium":
                         return "Medium";
                     case "Low":
                         return "Low";
-                    case "Completed":
-                        return "Completed";
                     default:
                         return "Unknown";
                 }

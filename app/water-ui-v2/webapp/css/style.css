@@ -10,6 +10,8 @@ header {
     font-size: 100px;
 }
 
+
+
 .iconTF2 {
     font-family: fantasy;
     font-size: 100px;
@@ -20,6 +22,8 @@ header {
 {
     color: rgba(0,98,216,255);
 }
+
+
 
 /* Titles in the boxes on object page - in the header */
 #container-wateruiv2---Object--_IDGenText6,
@@ -71,43 +75,3 @@ header {
     padding: 4px;
     border-width: 1.5px;
 }
-
-#container-wateruiv2---Object--_IDGenVBox3,
-#container-wateruiv2---Object--_IDGenToolbar
-{
-    width: 100% !important;
-    padding: 0% !important;
-    margin: 0% !important;
-    align-self: stretch !important;
-}
-
-
-/* Makes the right panels not overlap with the scrollbar */
-#container-wateruiv2---Object--_IDGenVBox
- {
-    padding-right: 5% !important;
-}
-
-/* 
-#container-wateruiv2---Object--_IDGenPanel,
-#container-wateruiv2---Object--_IDGenHBox1,
-#container-wateruiv2---Object--_IDGenHBox2,
-#__data34
-{
-    border-radius: 2%;
-    border-color: black;
-    border-style: solid;
-} */
-
-.Completed
-#__status0-container-wateruiv2---Worklist--_IDGenTable1-0-text
-{
-    color: red !important;
-}
-
-
-/* Leaflet Map */
-#container-wateruiv2---Worklist--leaflet_map {
-    height: 700px;
-    width: 500px;
- }

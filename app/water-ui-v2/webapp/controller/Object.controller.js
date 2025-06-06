@@ -48,7 +48,6 @@ sap.ui.define([
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
-
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Object").attachPatternMatched(this._onObjectMatched, this);
 
@@ -101,7 +100,8 @@ sap.ui.define([
 		},
 
 		onBackButtonPress: function () {
-			window.history.go(-1);
+			// window.history.go(-1);
+			window.history.back();
 		},
 
 		onObjectPress : function(oEvent) {
@@ -368,31 +368,106 @@ sap.ui.define([
 			return aFiltersWithValue;
 		},
 
+		
 		onConfirmDialogPress: function () {
+			var that = this;
+			var oView = this.getView();
+			var oModel = oView.getModel(); // or use a named model if needed
+			// var oModel = this.getOwnerComponent().getModel();
+			var oContext = oView.getBindingContext(); // or get from selected item
+			console.log("Model here!: " + oModel);
+			// if(oModel instanceof sap.ui.model.Model){
+			// 	console.log("Safe");
+			// }
+
 			if (!this._oDialog) {
-				var frgaId = "openFrag";
-				this._oDialog = sap.ui.xmlfragment(this.getView().getId(),
-				"wateruiv2.view.fragment.Form", this);
+				// var frgaId = "openFrag";
+				// this._oDialog = sap.ui.xmlfragment(
+				// 	this.getView().getId(),
+				// 	"wateruiv2.view.fragment.Form", this
+				// );
+				
+				// this._oDialog.setModel(oModel);
+				// this._oDialog.setBindingContext(oContext);
+				// oView.addDependent(this._oDialog); // Optional
+
+				var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
+				var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
+				// oModel.setProperty(sPath + "/MaintPriority", "Completed");
+				oModel.read("/NotificationMedia("+ "'" +sObjectId+ "'" + ")", {
+					success: function (oSuccess) {
+						console.log("----SUCCESSS FRAGMENT BIDNING----" + oSuccess);
+						// var frgaId = "openFrag";
+						that._oDialog = sap.ui.xmlfragment(
+							that.getView().getId(),
+							"wateruiv2.view.fragment.Form", that
+						);
+						// sap.ui.getCore().setModel(new sap.ui.model.json.JSONModel(oData), "modelSource");
+						that._oDialog.setModel(new sap.ui.model.json.JSONModel(oSuccess), "NotificationMediaModel");
+						// var oTable = sap.ui.getCore().byId("LineItemsSmartTable");
+						// oTable.getBinding("items").refresh();
+					},
+					error: function (oErrorMsg) {
+						console.log("!!!FRAGMENT BIDNING ERROR!!!" + oErrorMsg.message);
+						// reject(oError);
+					}	     
+				});
+
 			} else {
 				this._oDialog.open();
 			}
 		},
 
 		onSubmitOK: function () {
+				// Get the model
+				var oModel = this.getOwnerComponent().getModel();
+
+				// Get the current binding context (assuming the view is bound to the object)
+				var oContext = this.getView().getBindingContext();
+
+				// Update the Maintpriority field to "4" which represents being complete
+				if (oContext) {
+					// var sPath = oContext.getPath();
+					var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
+					var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
+
+					oModel.setProperty(sPath + "/MaintPriority", "Completed");
+					
+					var oData = {
+						MaintPriority: "Completed"
+					}
+					oModel.update("/Notification("+ "'" +sObjectId+ "'" + ")", oData, {
+						success: function (oSuccess) {
+							console.log("----SUCCESSS----" + oSuccess.message);
+							var oTable = sap.ui.getCore().byId("LineItemsSmartTable");
+							// oTable.getBinding("items").refresh();
+						},
+						error: function (oErrorMsg) {
+							console.log("!!!!!!" + oErrorMsg.message);
+							// reject(oError);
+						}	     
+					})
+				}
+				
+				//NOTE: The above should be set to 4 and then converted to "Complete in the formatter" so this is a temp solution
+				//      Also the value is only set in the session... Once refreshed it resets... So need to change so it changes in the database/csv
+
 				this._oDialog.close();
-				var sPreviousHash = History.getInstance().getPreviousHash();
+				var oHistory = sap.ui.core.routing.History.getInstance();
+				var sPreviousHash = oHistory.getPreviousHash();
 
 				if (sPreviousHash !== undefined) {
-					history.go(-1);
+					window.history.go(-1);
+					console.log("going back!");
 				} else {
-					this.getRouter().navTo("worklist", {}, true);
+					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+					oRouter.navTo("RouteWorklist", {}, true); // Replace with your default route
+					console.log("navigating!");
 				}
-			
 		},
 
 		onSubmitCancel: function () {
 				this._oDialog.close();
-			
 		}
 	});
 

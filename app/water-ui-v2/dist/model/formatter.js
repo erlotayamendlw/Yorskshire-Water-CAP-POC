@@ -1,2 +1,0 @@
-sap.ui.define([],function(){"use strict";return{priorityMethod:function(e){switch(e){case"1":return"High";case"2":return"Medium";case"3":return"Low";default:return"Unknown"}},date:function(e){if(e){return new Date(e).toLocaleDateString("en-GB")}return""}}});
-//# sourceMappingURL=formatter.js.map

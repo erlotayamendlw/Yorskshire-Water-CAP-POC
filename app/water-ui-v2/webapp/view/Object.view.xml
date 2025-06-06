@@ -40,7 +40,7 @@
                     </VBox>
                     <VBox id="_IDGenHBox5" gap="2vh">
                         <HBox id="_IDGenVBox8">
-                            <ObjectAttribute id="objectAttribute2" title="{i18n>ObjectViewHeaderTechnicianNameLabel}" text="{}" />
+                            <ObjectAttribute id="objectAttribute2" title="{i18n>ObjectViewHeaderTechnicianNameLabel}" text="{Technician}" />
                         </HBox>
                         <HBox id="_IDGenVBox9">
                             <ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>ObjectViewHeaderAnalystNameLabel}" text="{Analyst}" />
@@ -62,11 +62,11 @@
                     <HBox id="_IDGenHBox13" height="1vh" columnGap="1vw">
                         <VBox id="_IDGenVBox03" class="sapMTBStandard" height="15vh" width="13vw" gap="3vh">
                             <Text id="_IDGenText6" text="Report" />
-                            <Text id="_IDGenText7" text=">{ReportValue}" />
+                            <Text id="_IDGenText7" text="{NotificationType}" />
                         </VBox>
                         <VBox id="_IDGenVBox164" class="sapMTBStandard" height="15vh" width="13vw" gap="3vh">
                             <Text id="_IDGenText8" text="Incident ID" />
-                            <Text id="_IDGenText9" text="{IncidentIdValue}" />
+                            <Text id="_IDGenText9" text="{MaintenanceNotification}" />
                         </VBox>
                         <VBox id="_IDGenVBox166" class="sapMTBStandard" height="15vh" width="13vw" gap="3vh">
                             <Text id="_IDGenText10" text="Date" />
@@ -84,12 +84,12 @@
                             <Text id="_IDGenText15" text="{TechnicalObjectDescription}" />
                         </VBox>
                         <VBox id="_IDGenVBox1555" class="sapMTBStandard" height="15vh" width="13vw" gap="3vh">
-                            <Text id="_IDGenText16" text="Neighbouring Properties Flagged" />
-                            <Text id="_IDGenText17" text=">{NeighboursValue}" />
+                            <Text id="_IDGenText16" text="Previous Floodings" />
+                            <Text id="_IDGenText17" text="{PreviousFlooding}" />
                         </VBox>
                         <VBox id="_IDGenVBox1644" class="sapMTBStandard" height="15vh" width="13vw" gap="3vh">
-                            <Text id="_IDGenText18" text="Affected Property Count" />
-                            <Text id="_IDGenText19" text=">{ReportValue}" />
+                            <Text id="_IDGenText18" text="Previous CRM Complaints" />
+                            <Text id="_IDGenText19" text="{PrevCRMComplaints}" />
                         </VBox>
                     </HBox>
                 </VBox>
@@ -200,7 +200,7 @@
                                 <content>
                                     <html:video id="myPanelVideo" width="100%" height="100%" controls="true">
                                         <html:source src="{/URL}" type="video/mp4" />
-                                        <html:source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                                        <!-- <html:source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" /> -->
                                     </html:video>
                                     <Image id="myPanelImage" width="100%" height="100%" src="https://www.expresssewer.com/hubfs/broken-water-pipe-leaking.jpeg" />
                                 </content>

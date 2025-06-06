@@ -104,3 +104,10 @@ header {
 {
     color: red !important;
 }
+
+
+/* Leaflet Map */
+#container-wateruiv2---Worklist--leaflet_map {
+    height: 700px;
+    width: 500px;
+ }

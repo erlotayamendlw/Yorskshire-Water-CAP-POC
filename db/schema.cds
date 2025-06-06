@@ -57,6 +57,7 @@ entity Notification
         ConfidenceScoreOfLiability : Decimal;
         UserConfirmedLiability : Decimal;
         UserComments : String;
+        Technician : String;
         NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
 

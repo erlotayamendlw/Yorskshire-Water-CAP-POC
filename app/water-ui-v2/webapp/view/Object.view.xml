@@ -101,7 +101,6 @@
                     <VBox id="_IDGenVBox1" width="70%" >
                         <IconTabBar id="_IDGenIconTabBar" expanded="{device>/isNoPhone}" class="sapUiNoContentPadding">
                             <items>
-                                <IconTabFilter id="_IDGenIconTabFilter" text="Evidence" key="info" />
                                 <IconTabFilter id="_IDGenIconTabFilter2" text="Media Library" key="statistics">
                                     <content>
                                         <Table id="_IDGenTable" width="100%" itemPress="onObjectPress" inset="false" items="{/NotificationMedia}">
@@ -190,6 +189,7 @@
                                         </Table>
                                     </content>
                                 </IconTabFilter>
+                                <IconTabFilter id="_IDGenIconTabFilter" text="Evidence" key="info" />
                             </items>
                         </IconTabBar>
                     </VBox>

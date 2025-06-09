@@ -191,6 +191,7 @@
                                         </Table>
                                     </content>
                                 </IconTabFilter>
+                                <IconTabFilter id="_IDGenIconTabFilter" text="Evidence" key="info" />
                             </items>
                         </IconTabBar>
                     </VBox>

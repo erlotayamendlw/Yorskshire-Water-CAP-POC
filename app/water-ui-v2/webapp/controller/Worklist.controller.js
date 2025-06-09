@@ -88,14 +88,14 @@ sap.ui.define([
 				// oUnitFilter = new Filter("WeightUnit", "EQ", "KG"),
 				oFilter;
 
-			if (sKey === "nofault") {
-				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '3')], and: true});
+			if (sKey === "Completed") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'Completed')], and: true});
 				oBinding.filter([oFilter]);
-			} else if (sKey === "unsure") {
-				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '2')], and: true});
+			} else if (sKey === "In Progress") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'In Progress')], and: true});
 				oBinding.filter([oFilter]);
-			} else if (sKey === "fault") {
-				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", '1')], and: true});
+			} else if (sKey === "Not Started") {
+				oFilter = new Filter({filters: [new Filter("MaintPriority", "EQ", 'Not Started')], and: true});
 				oBinding.filter([oFilter]);
 			} else {
 				oBinding.filter([]);

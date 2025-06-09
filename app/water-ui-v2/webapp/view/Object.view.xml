@@ -99,7 +99,7 @@
                             <items>
                                 <IconTabFilter id="_IDGenIconTabFilter" text="Evidence" key="info">
                                     <content>
-                                        <html:iframe src="https://delaware-digital.eu20.analytics.cloud.sap/sap/fpa/ui/tenants/delaware-digital/app.html#/story?shellMode%3Dembed%26%2Fs%2FE331F3D994457F6C5F1FEB90DC824DB8%2F%3Fmode%3Dview%26f01Model%3Dt.NSNS9F.Cs9uuukenbt49h0vpf176eerf5o%3ACs9uuukenbt49h0vpf176eerf5o%26f01Dim%3DIncident_ID%26f01Val%3D1000753%26pageBar%3Ddisable" 
+                                        <html:iframe src="{myModel>/SACUrl}" 
                                         id ="SACiFrame" height="600px" width="100%"/>
                                     </content>
                                 </IconTabFilter>

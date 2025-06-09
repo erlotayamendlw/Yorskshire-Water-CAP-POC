@@ -104,11 +104,11 @@ sap.ui.define([
 			window.history.back();
 		},
 
-		onObjectPress : function(oEvent) {
+		onObjectPress: function (oEvent) {
 			var oSelectedItem = oEvent.getParameter("listItem");
 			var oContext = oSelectedItem.getBindingContext();
 			var oData = oContext.getObject();
-			
+
 			// Update the transcript and key observations panels
 			var oPanel2Text1 = this.byId("panel2text1");
 			oPanel2Text1.setText(`${oData.GenAIAnalysisOverview}`);
@@ -144,7 +144,7 @@ sap.ui.define([
 			this.displayCorrectFile(fileName);
 		},
 
-		displayCorrectFile : function(filePath) {
+		displayCorrectFile: function (filePath) {
 			// Assume `sFileName` is the variable holding the file name or URL
 			var sFileName = filePath.toLowerCase();
 
@@ -200,7 +200,32 @@ sap.ui.define([
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
-			
+
+			var SACURI = "https://delaware-digital.eu20.analytics.cloud.sap"
+			var SACPath = "/sap/fpa/ui/app.html#/story?shellMode=embed&/s/E331F3D994457F6C5F1FEB90DC824DB8/?mode=view&f01Model=t.NSNS9F.Cs9uuukenbt49h0vpf176eerf5o:Cs9uuukenbt49h0vpf176eerf5o&f01Dim=Incident_ID&pageBar=disable"
+			var SACIncidentID = "&f01Val=" + sObjectId
+
+			var SACURL = SACURI + SACPath + SACIncidentID
+
+
+			var oData = { SACUrl: SACURL };
+
+
+			var oModel = new sap.ui.model.json.JSONModel({
+				SACUrl: SACURL
+			});
+
+			this.oView.setModel(oModel, "myModel");
+
+			// this.oView.getModel().setProperty(SACURL, 'SACUrl');
+
+			var sIframeId = this.getView().byId(this.createId("SACiFrame")).getId();
+			$("#"+sIframeId).attr("src",SACURL);
+
+			const oView = this.getView();
+			const oModels = oView.oModels;
+			console.log(Object.keys(oModels));
+
 			var oModel = this.getView().getModel();
 			oModel.setProperty("/currentObjectId", sObjectId);
 			//------------
@@ -213,23 +238,23 @@ sap.ui.define([
 				var url = "/NotificationMedia";
 				that.getView().setBusy(true);
 				oModel2.read(url, {
-						        urlParameters: urlParams,
-								filters: aFilters,
-								success: function (oData) {
-									that.getView().setBusy(false);
-									// oModel2.setModel(oData)
-									console.log("Successfully read!");
-									resolve(oData);
-								},
-								error: function (oError) {
-									that.getView().setBusy(false);
-									console.log("Rejected read!");
-									reject(oError);
-								}      
-							}	
-						);
+					urlParameters: urlParams,
+					filters: aFilters,
+					success: function (oData) {
+						that.getView().setBusy(false);
+						// oModel2.setModel(oData)
+						console.log("Successfully read!");
+						resolve(oData);
+					},
+					error: function (oError) {
+						that.getView().setBusy(false);
+						console.log("Rejected read!");
+						reject(oError);
 					}
+				}
 				);
+			}
+			);
 		},
 
 		/**
@@ -332,7 +357,7 @@ sap.ui.define([
 			if (sQuery && sQuery.length > 0) {
 				// var filter = new Filter("GenAIDescription", FilterOperator.Contains, sQuery);
 				// aFilters.push(createFilterfilter);
-				aFilters.push( this.createFilter("GenAIDescription", FilterOperator.Contains, sQuery, true) );
+				aFilters.push(this.createFilter("GenAIDescription", FilterOperator.Contains, sQuery, true));
 			}
 
 			// update list binding
@@ -342,7 +367,7 @@ sap.ui.define([
 		},
 
 		//This allows for the searchbars filted to work with lower case and upper case
-		createFilter: function(key, operator, value, useToLower) {
+		createFilter: function (key, operator, value, useToLower) {
 			return new Filter(useToLower ? "tolower(" + key + ")" : key, operator, useToLower ? "'" + value.toLowerCase() + "'" : value);
 		},
 
@@ -353,6 +378,7 @@ sap.ui.define([
 		// onAfterVariantLoad: function () {
 		// 	this._updateLabelsAndTable();
 		// },
+
 
 		getFiltersWithValues: function () {
 			var aFiltersWithValue = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
@@ -368,7 +394,7 @@ sap.ui.define([
 			return aFiltersWithValue;
 		},
 
-		
+
 		onConfirmDialogPress: function () {
 			var that = this;
 			var oView = this.getView();
@@ -386,7 +412,7 @@ sap.ui.define([
 				// 	this.getView().getId(),
 				// 	"wateruiv2.view.fragment.Form", this
 				// );
-				
+
 				// this._oDialog.setModel(oModel);
 				// this._oDialog.setBindingContext(oContext);
 				// oView.addDependent(this._oDialog); // Optional
@@ -394,7 +420,7 @@ sap.ui.define([
 				var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
 				var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
 				// oModel.setProperty(sPath + "/MaintPriority", "Completed");
-				oModel.read("/NotificationMedia("+ "'" +sObjectId+ "'" + ")", {
+				oModel.read("/NotificationMedia(" + "'" + sObjectId + "'" + ")", {
 					success: function (oSuccess) {
 						console.log("----SUCCESSS FRAGMENT BIDNING----" + oSuccess);
 						// var frgaId = "openFrag";
@@ -410,7 +436,7 @@ sap.ui.define([
 					error: function (oErrorMsg) {
 						console.log("!!!FRAGMENT BIDNING ERROR!!!" + oErrorMsg.message);
 						// reject(oError);
-					}	     
+					}
 				});
 
 			} else {
@@ -419,55 +445,55 @@ sap.ui.define([
 		},
 
 		onSubmitOK: function () {
-				// Get the model
-				var oModel = this.getOwnerComponent().getModel();
+			// Get the model
+			var oModel = this.getOwnerComponent().getModel();
 
-				// Get the current binding context (assuming the view is bound to the object)
-				var oContext = this.getView().getBindingContext();
+			// Get the current binding context (assuming the view is bound to the object)
+			var oContext = this.getView().getBindingContext();
 
-				// Update the Maintpriority field to "4" which represents being complete
-				if (oContext) {
-					// var sPath = oContext.getPath();
-					var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
-					var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
+			// Update the Maintpriority field to "4" which represents being complete
+			if (oContext) {
+				// var sPath = oContext.getPath();
+				var sPath = oContext.getPath(); // e.g., "/Notification('MN001')"
+				var sObjectId = sPath.match(/\('(.+?)'\)/)[1]; // Extracts 'MN001'
 
-					oModel.setProperty(sPath + "/MaintPriority", "Completed");
-					
-					var oData = {
-						MaintPriority: "Completed"
+				oModel.setProperty(sPath + "/MaintPriority", "Completed");
+
+				var oData = {
+					MaintPriority: "Completed"
+				}
+				oModel.update("/Notification(" + "'" + sObjectId + "'" + ")", oData, {
+					success: function (oSuccess) {
+						console.log("----SUCCESSS----" + oSuccess.message);
+						var oTable = sap.ui.getCore().byId("LineItemsSmartTable");
+						// oTable.getBinding("items").refresh();
+					},
+					error: function (oErrorMsg) {
+						console.log("!!!!!!" + oErrorMsg.message);
+						// reject(oError);
 					}
-					oModel.update("/Notification("+ "'" +sObjectId+ "'" + ")", oData, {
-						success: function (oSuccess) {
-							console.log("----SUCCESSS----" + oSuccess.message);
-							var oTable = sap.ui.getCore().byId("LineItemsSmartTable");
-							// oTable.getBinding("items").refresh();
-						},
-						error: function (oErrorMsg) {
-							console.log("!!!!!!" + oErrorMsg.message);
-							// reject(oError);
-						}	     
-					})
-				}
-				
-				//NOTE: The above should be set to 4 and then converted to "Complete in the formatter" so this is a temp solution
-				//      Also the value is only set in the session... Once refreshed it resets... So need to change so it changes in the database/csv
+				})
+			}
 
-				this._oDialog.close();
-				var oHistory = sap.ui.core.routing.History.getInstance();
-				var sPreviousHash = oHistory.getPreviousHash();
+			//NOTE: The above should be set to 4 and then converted to "Complete in the formatter" so this is a temp solution
+			//      Also the value is only set in the session... Once refreshed it resets... So need to change so it changes in the database/csv
 
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-					console.log("going back!");
-				} else {
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-					oRouter.navTo("RouteWorklist", {}, true); // Replace with your default route
-					console.log("navigating!");
-				}
+			this._oDialog.close();
+			var oHistory = sap.ui.core.routing.History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+				console.log("going back!");
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("RouteWorklist", {}, true); // Replace with your default route
+				console.log("navigating!");
+			}
 		},
 
 		onSubmitCancel: function () {
-				this._oDialog.close();
+			this._oDialog.close();
 		}
 	});
 

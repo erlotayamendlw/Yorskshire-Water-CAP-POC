@@ -58,6 +58,7 @@ entity Notification
         UserConfirmedLiability : Decimal;
         UserComments : String;
         Technician : String;
+        Decision : String;
         NotificationMedia : Association to many NotificationMedia on MaintenanceNotification;
 }
 
@@ -81,3 +82,8 @@ entity NotificationMedia
         DateAdded: Date;
         TimeAdded: Time;
 }
+
+
+// entity NotificationMediaTypes as select from NotificationMedia {
+//     Type
+// } group by Type;

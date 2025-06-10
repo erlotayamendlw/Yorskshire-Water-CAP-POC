@@ -16,18 +16,6 @@
             height: 100%;
         }
     </style>
-    <!-- <script
-        id="sap-ui-bootstrap"
-        src="https://sapui5.hana.ondemand.com/1.134.1/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-resourceroots='{
-            "wateruiv2": "./"
-        }'
-        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-async="true"
-        data-sap-ui-frameOptions="trusted"
-    ></script> -->
 </head>
 <body class="sapUiBody sapUiSizeCompact" id="content">
     
@@ -39,33 +27,58 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        var greenIcon = L.icon({
+        var cloudIcon = L.icon({
             iconUrl: 'cloud4.png',
-            // shadowUrl: 'leaf-shadow.png',
             iconSize:     [40, 40], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 62],  // the same for the shadow
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
-        L.marker([52.416467, -2.979321], {icon: greenIcon}).addTo(map);
-        L.marker([51.064104, -1.896631], {icon: greenIcon}).addTo(map);
-        L.marker([53.115713, -1.226465], {icon: greenIcon}).addTo(map);
+        // L.marker([52.416467, -2.979321], {icon: cloudIcon}).addTo(map);
+        // L.marker([51.064104, -1.896631], {icon: cloudIcon}).addTo(map);
+        // L.marker([53.115713, -1.226465], {icon: cloudIcon}).addTo(map);
 
-        L.marker([51.5, -0.09],
-        {alt: 'Weather data'}).addTo(map) // "Kyiv" is the accessible name of this marker
-        .bindPopup('This is the weather data');
+        // L.marker([51.5, -0.09],
+        // {alt: 'Weather data'}).addTo(map)
+        // .bindPopup('This is the weather data');
 
-        
-        
-        // var circle1 = L.circle([51.508, -0.11], {
-        //     color: 'red',
-        //     fillColor: '#f03',
-        //     fillOpacity: 0.5,
-        //     radius: 50000
-        // }).addTo(map);
+        let apiUrl = "https://port4004-workspaces-ws-d95cb.eu10.applicationstudio.cloud.sap/odata/v4/catalog/Notification";
 
-        
+        fetch(apiUrl,
+        {
+            method: 'GET',
+            headers:
+            {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => createMapMarkers(data))
+        .catch(error => console.error("Error fetching data:", error));
+
+        function createMapMarkers(data) {
+            var dataArray = data.value;
+            console.log(dataArray);
+            dataArray.forEach(element => {
+                var long = element.Longitude;
+                var lat = element.Latitude;
+                var notificationText = element.NotificationText;
+                L.marker(
+                    [lat, long],
+                    // {icon: cloudIcon},
+                    {alt: 'Weather data'},
+                    )
+                .addTo(map)
+                .bindPopup(notificationText);
+            });
+    }
+
+    var polygon = L.polygon([
+        [51.09, -0.08],
+        [51.503, -0.66],
+        [51.700, -0.047]
+    ]).addTo(map);
 
     </script>
 </body>

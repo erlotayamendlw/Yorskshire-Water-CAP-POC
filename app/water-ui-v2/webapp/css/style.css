@@ -60,7 +60,7 @@ header {
 }
 
 /* Reccomendation status label in the header */
-#__text2
+/* #__text3
 {
     color: rgba(239,68,68,255);
     font-weight: 500;
@@ -70,6 +70,10 @@ header {
     border-style: solid;
     padding: 4px;
     border-width: 1.5px;
+} */
+
+#container-wateruiv2---Object--_IDGenVBox2 {
+    padding-top: 0%;
 }
 
 #container-wateruiv2---Object--_IDGenVBox3,
@@ -111,3 +115,43 @@ header {
     height: 700px;
     width: 500px;
  }
+
+#container-wateruiv2---Object--_IDGenText6,
+#container-wateruiv2---Object--_IDGenText8,
+#container-wateruiv2---Object--_IDGenText10,
+#container-wateruiv2---Object--_IDGenText12,
+#container-wateruiv2---Object--_IDGenText14,
+#container-wateruiv2---Object--_IDGenText16,
+#container-wateruiv2---Object--_IDGenText18
+{
+    color: gray;
+}
+
+#container-wateruiv2---Object--_IDGenText7,
+#container-wateruiv2---Object--_IDGenText9,
+#container-wateruiv2---Object--_IDGenText11,
+#container-wateruiv2---Object--_IDGenText13,
+#container-wateruiv2---Object--_IDGenText15,
+#container-wateruiv2---Object--_IDGenText17,
+#container-wateruiv2---Object--_IDGenText19
+{
+    color: rgba(21,21,21,255);
+    font-weight: 500;
+    padding: 4px;
+    /* font-size: medium; */
+    
+}
+
+
+#container-wateruiv2---Object--_IDGenVBox4 {
+    gap: 2vw !important;
+}
+
+/* #__image0 {
+    border-radius: 100%;
+} */
+
+/* #__text0 {
+    padding-right: 30px;
+    padding-top: 2px;
+} */

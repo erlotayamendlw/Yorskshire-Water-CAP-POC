@@ -23,7 +23,7 @@
                 <HBox id="_IDGenVBox4" gap="5vw">
                     <VBox id="_IDGenHBox4" gap="2vh">
                         <HBox id="_IDGenVBox6">
-                            <ObjectAttribute id="objectAttribute1" title="{i18n>ObjectViewRecommendation}" text="{}" />
+                            <ObjectAttribute id="objectAttribute1" class="recommendationStatus" title="{i18n>ObjectViewRecommendation}" text="{}" />
                         </HBox>
                         <HBox id="_IDGenVBox7">
                             <ObjectAttribute id="_IDGenObjectAttribute" title="{i18n>ObjectViewStatus}"
@@ -115,23 +115,28 @@
                                                                 <fb:filterGroupItems>
                                                                     <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Type" label="Type" groupName="Group1" visibleInFilterBar="true">
                                                                         <fb:control>
-                                                                            <MultiComboBox id="_IDGenMultiComboBox" placeholder="Select Type" name="Type" selectionChange=".onSelectionChange" items="{
+                                                                            <!-- <MultiComboBox id="_IDGenMultiComboBox" placeholder="Select Type" name="Type" selectionChange=".onSelectionChange" items="{
                                                                                     path: '/NotificationMedia',
                                                                                     sorter: { path: 'Type'},
                                                                                     templateShareable: true
                                                                                 }">
                                                                                 <core:Item id="_IDGenItem" key="{Type}" text="{Type}" />
+                                                                            </MultiComboBox> -->
+
+                                                                            <MultiComboBox id="_IDGenMultiComboBox4" placeholder="Select Type" name="Type" selectionChange=".onSelectionChange">
+                                                                                <core:Item id="_IDGenItem55" key="Video" text="Video" />
+                                                                                <core:Item id="_IDGenItem56" key="Image" text="Image" />
+                                                                                <core:Item id="_IDGenItem57" key="Document" text="Document" />
                                                                             </MultiComboBox>
+                                                                            
+                                                                            
                                                                         </fb:control>
                                                                     </fb:FilterGroupItem>
                                                                     <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="GenAICategorisation" label="GenAICategorisation" groupName="Group1" visibleInFilterBar="true">
                                                                         <fb:control>
-                                                                            <MultiComboBox id="_IDGenMultiComboBox1" placeholder="Select Category" name="GenAICategorisation" selectionChange=".onSelectionChange" items="{
-                                                                                    path: '/NotificationMedia',
-                                                                                    sorter: { path: 'GenAICategorisation'},
-                                                                                    templateShareable: true
-                                                                                }">
-                                                                                <core:Item id="_IDGenItem1" key="{GenAICategorisation}" text="{GenAICategorisation}" />
+                                                                            <MultiComboBox id="_IDGenMultiComboBox1" placeholder="Select Category" name="GenAICategorisation" selectionChange=".onSelectionChange">
+                                                                                <core:Item id="_IDGenItem100" key="Blockage found (internal cause)" text="Blockage found (internal cause)" />
+                                                                                <core:Item id="_IDGenItem101" key="Poor condition / known defecty" text="Poor condition / known defecty" />
                                                                             </MultiComboBox>
                                                                         </fb:control>
                                                                     </fb:FilterGroupItem>

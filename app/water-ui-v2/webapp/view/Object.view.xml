@@ -15,11 +15,15 @@
     xmlns:smartTable="sap.ui.comp.smarttable">
 
     <Page id="_IDGenPage" showNavButton="true" navButtonPress="onBackButtonPress" enableScrolling="false">
-        <semantic:SemanticPage id="semanticPage" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
+            
+            <semantic:SemanticPage id="semanticPage" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
             <semantic:titleHeading>
                 <Title id="_IDGenTitle" text="Incident Details" />
             </semantic:titleHeading>
             <semantic:headerContent>
+                <HBox id="_IDGenHBox5"  backgroundDesign="Solid" justifyContent="End" height="10px" width="100%">
+                    <ObjectAttribute id="_IDGenObjectAttribute1" title="Welcome" text="{Analyst}" />
+                </HBox>
                 <HBox id="_IDGenVBox4" gap="5vw">
                     <VBox id="_IDGenHBox4" gap="2vh">
                         <HBox id="_IDGenVBox6">

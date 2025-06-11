@@ -29,7 +29,7 @@ sap.ui.define([
                     case "Completed":
                         return "Completed";
                     default:
-                        return "Unknown";
+                        return mpriority;
                 }
             },
 
